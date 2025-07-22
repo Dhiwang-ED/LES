@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktorisasi Aljabar Visual - Matematika SMP Kelas 9</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .math-container {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .visual-step {
+            transition: all 0.5s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .visual-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .factor-box {
+            border: 2px dashed #4f46e5;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px;
+            background: rgba(79, 70, 229, 0.1);
+            transition: all 0.3s ease;
+        }
+        .factor-box:hover {
+            background: rgba(79, 70, 229, 0.2);
+            transform: scale(1.02);
+        }
+        .canvas-container {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-purple-800 mb-4">🧮 Faktorisasi Aljabar Visual</h1>
+            <p class="text-lg text-gray-700">Belajar Matematika dengan Visualisasi untuk Siswa SMP Kelas 9</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button onclick="showSection('materi')" class="nav-btn bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                📚 Materi
+            </button>
+            <button onclick="showSection('contoh')" class="nav-btn bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                💡 Contoh Soal
+            </button>
+            <button onclick="showSection('latihan')" class="nav-btn bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                ✏️ Latihan Soal
+            </button>
+        </div>
+
+        <!-- Materi Section -->
+        <div id="materi" class="section">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-center text-purple-700 mb-6">🎯 Tujuan Pembelajaran</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-3">Siswa Mampu:</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>✅ Memahami konsep faktorisasi dalam bentuk aljabar</li>
+                            <li>✅ Mengaitkan dengan sifat distributif</li>
+                            <li>✅ Memfaktorkan bentuk aljabar sederhana</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-700 mb-3">Teknik yang Dipelajari:</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>🔹 Faktor Persekutuan</li>
+                            <li>🔹 Selisih Dua Kuadrat</li>
+                            <li>🔹 Bentuk Kuadrat Sempurna</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Konsep Dasar -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-center text-purple-700 mb-6">🧠 Konsep Dasar Faktorisasi</h2>
+                <div class="text-center mb-6">
+                    <p class="text-lg text-gray-700 mb-4">Faktorisasi adalah kebalikan dari perkalian. Bayangkan seperti membongkar sebuah puzzle!</p>
+                    <div class="canvas-container">
+                        <canvas id="conceptCanvas" width="600" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-3">💡 Analogi Visual:</h3>
+                    <p class="text-gray-700">Jika perkalian adalah "menggabungkan kotak-kotak", maka faktorisasi adalah "memisahkan kotak-kotak tersebut kembali"</p>
+                </div>
+            </div>
+
+            <!-- Teknik 1: Faktor Persekutuan -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-2xl font-bold text-blue-700 mb-6">🔍 Teknik 1: Faktor Persekutuan</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Konsep:</h3>
+                        <p class="text-gray-700 mb-4">Mencari faktor yang sama dari setiap suku dalam bentuk aljabar.</p>
+                        <div class="math-container">
+                            Contoh: $$6x + 9 = 3(2x + 3)$$
+                        </div>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="factorCanvas1" width="300" height="150"></canvas>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold mb-3">🎯 Langkah-langkah:</h3>
+                    <div class="space-y-3">
+                        <div class="factor-box">
+                            <strong>Langkah 1:</strong> Identifikasi faktor persekutuan dari koefisien
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 2:</strong> Identifikasi faktor persekutuan dari variabel
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 3:</strong> Keluarkan faktor persekutuan
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 4:</strong> Tulis hasil faktorisasi
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teknik 2: Selisih Dua Kuadrat -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-2xl font-bold text-green-700 mb-6">⚡ Teknik 2: Selisih Dua Kuadrat</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Konsep:</h3>
+                        <p class="text-gray-700 mb-4">Bentuk $$a^2 - b^2 = (a+b)(a-b)$$</p>
+                        <div class="math-container">
+                            Contoh: $$x^2 - 9 = (x+3)(x-3)$$
+                        </div>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="factorCanvas2" width="300" height="150"></canvas>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold mb-3">🎯 Langkah-langkah:</h3>
+                    <div class="space-y-3">
+                        <div class="factor-box">
+                            <strong>Langkah 1:</strong> Pastikan bentuknya $$a^2 - b^2$$
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 2:</strong> Identifikasi nilai $$a$$ dan $$b$$
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 3:</strong> Tulis dalam bentuk $$(a+b)(a-b)$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teknik 3: Bentuk Kuadrat Sempurna -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-2xl font-bold text-red-700 mb-6">🎨 Teknik 3: Bentuk Kuadrat Sempurna</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Konsep:</h3>
+                        <p class="text-gray-700 mb-4">Bentuk $$a^2 + 2ab + b^2 = (a+b)^2$$</p>
+                        <div class="math-container">
+                            Contoh: $$x^2 + 6x + 9 = (x+3)^2$$
+                        </div>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="factorCanvas3" width="300" height="150"></canvas>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold mb-3">🎯 Langkah-langkah:</h3>
+                    <div class="space-y-3">
+                        <div class="factor-box">
+                            <strong>Langkah 1:</strong> Identifikasi $$a^2$$ dan $$b^2$$
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 2:</strong> Periksa apakah suku tengah = $$2ab$$
+                        </div>
+                        <div class="factor-box">
+                            <strong>Langkah 3:</strong> Tulis dalam bentuk $$(a \pm b)^2$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contoh Soal Section -->
+        <div id="contoh" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-center text-purple-700 mb-6">💡 Contoh Soal dengan Visualisasi</h2>
+                
+                <!-- Pilihan Teknik -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button onclick="showExample('persekutuan')" class="example-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                        Faktor Persekutuan
+                    </button>
+                    <button onclick="showExample('selisih')" class="example-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                        Selisih Dua Kuadrat
+                    </button>
+                    <button onclick="showExample('kuadrat')" class="example-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
+                        Kuadrat Sempurna
+                    </button>
+                </div>
+
+                <!-- Contoh Faktor Persekutuan -->
+                <div id="example-persekutuan" class="example-content">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-4">Contoh: Faktor Persekutuan</h3>
+                    <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                        <div class="math-container text-center text-xl">
+                            Faktorkan: $$12x^2 + 8x$$
+                        </div>
+                    </div>
+                    
+                    <div id="steps-persekutuan" class="space-y-4">
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                            <strong>Langkah 1:</strong> Identifikasi faktor persekutuan koefisien
+                            <div class="math-container">12 dan 8 → FPB = <span class="highlight">4</span></div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                            <strong>Langkah 2:</strong> Identifikasi faktor persekutuan variabel
+                            <div class="math-container">$$x^2 \text{ dan } x \text{ → FPB = } x$$</div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                            <strong>Langkah 3:</strong> Keluarkan faktor persekutuan
+                            <div class="math-container">$$12x^2 + 8x = \text{4x}(3x + 2)$$</div>
+                        </div>
+                        <div class="visual-step bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Hasil:</strong> $$12x^2 + 8x = 4x(3x + 2)$$
+                        </div>
+                    </div>
+                    
+                    <button onclick="animateSteps('persekutuan')" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg">
+                        🎬 Lihat Animasi Langkah
+                    </button>
+                </div>
+
+                <!-- Contoh Selisih Dua Kuadrat -->
+                <div id="example-selisih" class="example-content hidden">
+                    <h3 class="text-2xl font-bold text-green-700 mb-4">Contoh: Selisih Dua Kuadrat</h3>
+                    <div class="bg-green-50 p-6 rounded-lg mb-6">
+                        <div class="math-container text-center text-xl">
+                            Faktorkan: $$25x^2 - 16$$
+                        </div>
+                    </div>
+                    
+                    <div id="steps-selisih" class="space-y-4">
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Langkah 1:</strong> Identifikasi bentuk $$a^2 - b^2$$
+                            <div class="math-container">$$25x^2 = (5x)^2 \text{ dan } 16 = 4^2$$</div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Langkah 2:</strong> Tentukan nilai a dan b
+                            <div class="math-container">$$a = 5x \text{ dan } b = 4$$</div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Langkah 3:</strong> Gunakan rumus $$(a+b)(a-b)$$
+                            <div class="math-container">$$25x^2 - 16 = (5x + 4)(5x - 4)$$</div>
+                        </div>
+                        <div class="visual-step bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Hasil:</strong> $$25x^2 - 16 = (5x + 4)(5x - 4)$$
+                        </div>
+                    </div>
+                    
+                    <button onclick="animateSteps('selisih')" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">
+                        🎬 Lihat Animasi Langkah
+                    </button>
+                </div>
+
+                <!-- Contoh Kuadrat Sempurna -->
+                <div id="example-kuadrat" class="example-content hidden">
+                    <h3 class="text-2xl font-bold text-red-700 mb-4">Contoh: Bentuk Kuadrat Sempurna</h3>
+                    <div class="bg-red-50 p-6 rounded-lg mb-6">
+                        <div class="math-container text-center text-xl">
+                            Faktorkan: $$x^2 + 10x + 25$$
+                        </div>
+                    </div>
+                    
+                    <div id="steps-kuadrat" class="space-y-4">
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-red-500">
+                            <strong>Langkah 1:</strong> Identifikasi $$a^2$$ dan $$b^2$$
+                            <div class="math-container">$$x^2 = x^2 \text{ dan } 25 = 5^2$$</div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-red-500">
+                            <strong>Langkah 2:</strong> Periksa suku tengah
+                            <div class="math-container">$$2ab = 2 \cdot x \cdot 5 = 10x$$ ✓</div>
+                        </div>
+                        <div class="visual-step bg-white p-4 rounded-lg border-l-4 border-red-500">
+                            <strong>Langkah 3:</strong> Tulis dalam bentuk $$(a+b)^2$$
+                            <div class="math-container">$$x^2 + 10x + 25 = (x + 5)^2$$</div>
+                        </div>
+                        <div class="visual-step bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <strong>Hasil:</strong> $$x^2 + 10x + 25 = (x + 5)^2$$
+                        </div>
+                    </div>
+                    
+                    <button onclick="animateSteps('kuadrat')" class="mt-4 bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg">
+                        🎬 Lihat Animasi Langkah
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latihan Soal Section -->
+        <div id="latihan" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-center text-purple-700 mb-6">✏️ Latihan Soal Interaktif</h2>
+                
+                <!-- Pilihan Teknik Latihan -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button onclick="showExercise('persekutuan')" class="exercise-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                        Faktor Persekutuan (8 soal)
+                    </button>
+                    <button onclick="showExercise('selisih')" class="exercise-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                        Selisih Dua Kuadrat (8 soal)
+                    </button>
+                    <button onclick="showExercise('kuadrat')" class="exercise-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
+                        Kuadrat Sempurna (8 soal)
+                    </button>
+                </div>
+
+                <!-- Latihan Faktor Persekutuan -->
+                <div id="exercise-persekutuan" class="exercise-content">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6">Latihan: Faktor Persekutuan</h3>
+                    <div id="persekutuan-questions" class="space-y-6"></div>
+                </div>
+
+                <!-- Latihan Selisih Dua Kuadrat -->
+                <div id="exercise-selisih" class="exercise-content hidden">
+                    <h3 class="text-2xl font-bold text-green-700 mb-6">Latihan: Selisih Dua Kuadrat</h3>
+                    <div id="selisih-questions" class="space-y-6"></div>
+                </div>
+
+                <!-- Latihan Kuadrat Sempurna -->
+                <div id="exercise-kuadrat" class="exercise-content hidden">
+                    <h3 class="text-2xl font-bold text-red-700 mb-6">Latihan: Bentuk Kuadrat Sempurna</h3>
+                    <div id="kuadrat-questions" class="space-y-6"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mt-8">
+                    <div class="bg-gray-200 rounded-full h-4">
+                        <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-500 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <p class="text-center mt-2 text-gray-600">Progress: <span id="progress-text">0/8</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Pembahasan -->
+    <div id="solution-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-purple-700">💡 Pembahasan</h3>
+                <button onclick="closeSolutionModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div id="solution-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // KaTeX Configuration
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ]
+            });
+        });
+
+        function renderMath(element) {
+            if (window.renderMathInElement) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\[", right: "\\]", display: true}
+                    ]
+                });
+            }
+        }
+
+        // Data soal latihan
+        const exerciseData = {
+            persekutuan: [
+                { question: "6x + 9", answer: "3(2x + 3)", steps: ["FPB dari 6 dan 9 adalah 3", "6x + 9 = 3(2x + 3)"] },
+                { question: "15y^2 + 10y", answer: "5y(3y + 2)", steps: ["FPB dari 15 dan 10 adalah 5", "FPB dari y² dan y adalah y", "15y² + 10y = 5y(3y + 2)"] },
+                { question: "12a^3 - 8a^2", answer: "4a^2(3a - 2)", steps: ["FPB dari 12 dan 8 adalah 4", "FPB dari a³ dan a² adalah a²", "12a³ - 8a² = 4a²(3a - 2)"] },
+                { question: "21x^2y + 14xy^2", answer: "7xy(3x + 2y)", steps: ["FPB dari 21 dan 14 adalah 7", "FPB dari x²y dan xy² adalah xy", "21x²y + 14xy² = 7xy(3x + 2y)"] },
+                { question: "18m^3 - 12m^2 + 6m", answer: "6m(3m^2 - 2m + 1)", steps: ["FPB dari 18, 12, dan 6 adalah 6", "FPB dari m³, m², dan m adalah m", "18m³ - 12m² + 6m = 6m(3m² - 2m + 1)"] },
+                { question: "20p^2q - 15pq^2", answer: "5pq(4p - 3q)", steps: ["FPB dari 20 dan 15 adalah 5", "FPB dari p²q dan pq² adalah pq", "20p²q - 15pq² = 5pq(4p - 3q)"] },
+                { question: "24x^4 + 16x^3 - 8x^2", answer: "8x^2(3x^2 + 2x - 1)", steps: ["FPB dari 24, 16, dan 8 adalah 8", "FPB dari x⁴, x³, dan x² adalah x²", "24x⁴ + 16x³ - 8x² = 8x²(3x² + 2x - 1)"] },
+                { question: "35a^2b^3 - 21ab^2", answer: "7ab^2(5ab - 3)", steps: ["FPB dari 35 dan 21 adalah 7", "FPB dari a²b³ dan ab² adalah ab²", "35a²b³ - 21ab² = 7ab²(5ab - 3)"] }
+            ],
+            selisih: [
+                { question: "x^2 - 4", answer: "(x + 2)(x - 2)", steps: ["x² - 4 = x² - 2²", "Gunakan rumus a² - b² = (a+b)(a-b)", "x² - 4 = (x + 2)(x - 2)"] },
+                { question: "9y^2 - 16", answer: "(3y + 4)(3y - 4)", steps: ["9y² - 16 = (3y)² - 4²", "a = 3y, b = 4", "9y² - 16 = (3y + 4)(3y - 4)"] },
+                { question: "25a^2 - 1", answer: "(5a + 1)(5a - 1)", steps: ["25a² - 1 = (5a)² - 1²", "a = 5a, b = 1", "25a² - 1 = (5a + 1)(5a - 1)"] },
+                { question: "49m^2 - 36n^2", answer: "(7m + 6n)(7m - 6n)", steps: ["49m² - 36n² = (7m)² - (6n)²", "a = 7m, b = 6n", "49m² - 36n² = (7m + 6n)(7m - 6n)"] },
+                { question: "4x^2 - 25y^2", answer: "(2x + 5y)(2x - 5y)", steps: ["4x² - 25y² = (2x)² - (5y)²", "a = 2x, b = 5y", "4x² - 25y² = (2x + 5y)(2x - 5y)"] },
+                { question: "81p^2 - 64", answer: "(9p + 8)(9p - 8)", steps: ["81p² - 64 = (9p)² - 8²", "a = 9p, b = 8", "81p² - 64 = (9p + 8)(9p - 8)"] },
+                { question: "100 - 9q^2", answer: "(10 + 3q)(10 - 3q)", steps: ["100 - 9q² = 10² - (3q)²", "a = 10, b = 3q", "100 - 9q² = (10 + 3q)(10 - 3q)"] },
+                { question: "16a^2 - 49b^2", answer: "(4a + 7b)(4a - 7b)", steps: ["16a² - 49b² = (4a)² - (7b)²", "a = 4a, b = 7b", "16a² - 49b² = (4a + 7b)(4a - 7b)"] }
+            ],
+            kuadrat: [
+                { question: "x^2 + 6x + 9", answer: "(x + 3)^2", steps: ["x² + 6x + 9", "a² = x², b² = 9 = 3²", "2ab = 2·x·3 = 6x ✓", "(x + 3)²"] },
+                { question: "4y^2 + 12y + 9", answer: "(2y + 3)^2", steps: ["4y² + 12y + 9", "a² = 4y² = (2y)², b² = 9 = 3²", "2ab = 2·2y·3 = 12y ✓", "(2y + 3)²"] },
+                { question: "9a^2 - 12a + 4", answer: "(3a - 2)^2", steps: ["9a² - 12a + 4", "a² = 9a² = (3a)², b² = 4 = 2²", "2ab = 2·3a·2 = 12a ✓", "(3a - 2)²"] },
+                { question: "25m^2 + 20m + 4", answer: "(5m + 2)^2", steps: ["25m² + 20m + 4", "a² = 25m² = (5m)², b² = 4 = 2²", "2ab = 2·5m·2 = 20m ✓", "(5m + 2)²"] },
+                { question: "16x^2 - 24x + 9", answer: "(4x - 3)^2", steps: ["16x² - 24x + 9", "a² = 16x² = (4x)², b² = 9 = 3²", "2ab = 2·4x·3 = 24x ✓", "(4x - 3)²"] },
+                { question: "36p^2 + 60p + 25", answer: "(6p + 5)^2", steps: ["36p² + 60p + 25", "a² = 36p² = (6p)², b² = 25 = 5²", "2ab = 2·6p·5 = 60p ✓", "(6p + 5)²"] },
+                { question: "49q^2 - 14q + 1", answer: "(7q - 1)^2", steps: ["49q² - 14q + 1", "a² = 49q² = (7q)², b² = 1 = 1²", "2ab = 2·7q·1 = 14q ✓", "(7q - 1)²"] },
+                { question: "64 + 16t + t^2", answer: "(8 + t)^2", steps: ["64 + 16t + t²", "a² = 64 = 8², b² = t²", "2ab = 2·8·t = 16t ✓", "(8 + t)²"] }
+            ]
+        };
+
+        let currentExercise = 'persekutuan';
+        let currentProgress = 0;
+
+        // Navigation functions
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(section).classList.remove('hidden');
+            
+            if (section === 'materi') {
+                setTimeout(() => {
+                    drawConceptCanvas();
+                    drawFactorCanvas();
+                }, 100);
+            }
+        }
+
+        function showExample(type) {
+            document.querySelectorAll('.example-content').forEach(e => e.classList.add('hidden'));
+            document.getElementById(`example-${type}`).classList.remove('hidden');
+        }
+
+        function showExercise(type) {
+            document.querySelectorAll('.exercise-content').forEach(e => e.classList.add('hidden'));
+            document.getElementById(`exercise-${type}`).classList.remove('hidden');
+            currentExercise = type;
+            currentProgress = 0;
+            generateExerciseQuestions(type);
+            updateProgress();
+        }
+
+        // Animation functions
+        function animateSteps(type) {
+            const steps = document.querySelectorAll(`#steps-${type} .visual-step`);
+            steps.forEach(step => step.classList.remove('active'));
+            
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                }, index * 1000);
+            });
+        }
+
+        // Canvas drawing functions
+        function drawConceptCanvas() {
+            const canvas = document.getElementById('conceptCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw puzzle pieces concept
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            
+            // Title
+            ctx.fillStyle = '#1F2937';
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('Konsep Puzzle Faktorisasi', 300, 25);
+            
+            // Left side - Combined puzzle (6x + 9)
+            ctx.fillStyle = '#3B82F6';
+            ctx.fillRect(50, 50, 150, 60);
+            ctx.fillStyle = 'white';
+            ctx.font = '16px Arial';
+            ctx.fillText('6x + 9', 125, 85);
+            
+            // Arrow pointing right (perkalian)
+            ctx.fillStyle = '#10B981';
+            ctx.font = '14px Arial';
+            ctx.fillText('Perkalian →', 125, 130);
+            
+            // Arrow pointing left (faktorisasi)
+            ctx.fillStyle = '#EF4444';
+            ctx.fillText('← Faktorisasi', 125, 145);
+            
+            // Right side - Separated puzzle pieces
+            ctx.fillStyle = '#8B5CF6';
+            ctx.fillRect(280, 40, 60, 35);
+            ctx.fillStyle = 'white';
+            ctx.font = '14px Arial';
+            ctx.fillText('3', 310, 62);
+            
+            ctx.fillStyle = '#F59E0B';
+            ctx.fillRect(280, 85, 80, 35);
+            ctx.fillStyle = 'white';
+            ctx.fillText('(2x + 3)', 320, 107);
+            
+            // Connection lines
+            ctx.strokeStyle = '#6B7280';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(200, 70);
+            ctx.lineTo(280, 57);
+            ctx.moveTo(200, 90);
+            ctx.lineTo(280, 102);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Labels
+            ctx.fillStyle = '#374151';
+            ctx.font = '12px Arial';
+            ctx.fillText('Bentuk Utuh', 125, 170);
+            ctx.fillText('Faktor-faktor', 320, 140);
+        }
+
+        function drawFactorCanvas() {
+            // Draw visual representations for each technique
+            ['factorCanvas1', 'factorCanvas2', 'factorCanvas3'].forEach((canvasId, index) => {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.textAlign = 'center';
+                
+                if (index === 0) {
+                    // Faktor Persekutuan visualization - improved
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = '#1F2937';
+                    ctx.fillText('6x + 9', 150, 20);
+                    
+                    // Draw terms
+                    ctx.fillStyle = '#3B82F6';
+                    ctx.fillRect(30, 40, 70, 35);
+                    ctx.fillRect(180, 40, 70, 35);
+                    ctx.fillStyle = 'white';
+                    ctx.font = '14px Arial';
+                    ctx.fillText('6x', 65, 62);
+                    ctx.fillText('9', 215, 62);
+                    
+                    // Show common factor extraction
+                    ctx.fillStyle = '#8B5CF6';
+                    ctx.fillRect(50, 90, 30, 25);
+                    ctx.fillRect(200, 90, 30, 25);
+                    ctx.fillStyle = 'white';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('3', 65, 107);
+                    ctx.fillText('3', 215, 107);
+                    
+                    // Result
+                    ctx.fillStyle = '#10B981';
+                    ctx.fillRect(110, 125, 80, 25);
+                    ctx.fillStyle = 'white';
+                    ctx.fillText('3(2x + 3)', 150, 142);
+                    
+                } else if (index === 1) {
+                    // Selisih Dua Kuadrat - improved geometric visualization
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = '#1F2937';
+                    ctx.fillText('a² - b²', 150, 20);
+                    
+                    // Draw large square
+                    ctx.fillStyle = '#10B981';
+                    ctx.fillRect(50, 40, 80, 80);
+                    
+                    // Draw small square (to be subtracted)
+                    ctx.fillStyle = '#EF4444';
+                    ctx.fillRect(90, 60, 40, 40);
+                    
+                    // Labels
+                    ctx.fillStyle = 'white';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('a', 70, 55);
+                    ctx.fillText('b', 110, 75);
+                    
+                    // Arrow and result
+                    ctx.fillStyle = '#1F2937';
+                    ctx.font = '14px Arial';
+                    ctx.fillText('=', 150, 80);
+                    
+                    ctx.fillStyle = '#8B5CF6';
+                    ctx.fillRect(180, 50, 80, 20);
+                    ctx.fillRect(180, 90, 80, 20);
+                    ctx.fillStyle = 'white';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('(a + b)', 220, 65);
+                    ctx.fillText('(a - b)', 220, 105);
+                    
+                } else {
+                    // Kuadrat Sempurna - improved square visualization
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = '#1F2937';
+                    ctx.fillText('(a + b)²', 150, 20);
+                    
+                    // Draw perfect square grid
+                    ctx.strokeStyle = '#374151';
+                    ctx.lineWidth = 2;
+                    
+                    // Main square divided into 4 parts
+                    ctx.fillStyle = '#EF4444';
+                    ctx.fillRect(50, 40, 40, 40);
+                    ctx.fillStyle = '#F59E0B';
+                    ctx.fillRect(90, 40, 40, 40);
+                    ctx.fillStyle = '#F59E0B';
+                    ctx.fillRect(50, 80, 40, 40);
+                    ctx.fillStyle = '#8B5CF6';
+                    ctx.fillRect(90, 80, 40, 40);
+                    
+                    // Draw grid lines
+                    ctx.beginPath();
+                    ctx.moveTo(50, 40);
+                    ctx.lineTo(130, 40);
+                    ctx.lineTo(130, 120);
+                    ctx.lineTo(50, 120);
+                    ctx.lineTo(50, 40);
+                    ctx.moveTo(90, 40);
+                    ctx.lineTo(90, 120);
+                    ctx.moveTo(50, 80);
+                    ctx.lineTo(130, 80);
+                    ctx.stroke();
+                    
+                    // Labels
+                    ctx.fillStyle = 'white';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('a²', 70, 65);
+                    ctx.fillText('ab', 110, 65);
+                    ctx.fillText('ab', 70, 105);
+                    ctx.fillText('b²', 110, 105);
+                    
+                    // Result
+                    ctx.fillStyle = '#1F2937';
+                    ctx.font = '14px Arial';
+                    ctx.fillText('= a² + 2ab + b²', 200, 80);
+                }
+            });
+        }
+
+        // Exercise generation
+        function generateExerciseQuestions(type) {
+            const container = document.getElementById(`${type}-questions`);
+            container.innerHTML = '';
+            
+            exerciseData[type].forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-gray-50 p-6 rounded-lg border';
+                questionDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-700">Soal ${index + 1}</h4>
+                            <div class="math-container text-xl">Faktorkan: $$${item.question}$$</div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-500">Poin: 10</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="text" id="answer-${type}-${index}" 
+                               placeholder="Masukkan jawaban Anda..." 
+                               class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="checkAnswer('${type}', ${index})" 
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                            ✓ Periksa Jawaban
+                        </button>
+                        <button onclick="showSolution('${type}', ${index})" 
+                                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                            💡 Lihat Pembahasan
+                        </button>
+                    </div>
+                    <div id="result-${type}-${index}" class="mt-3"></div>
+                `;
+                container.appendChild(questionDiv);
+            });
+            
+            // Re-render KaTeX
+            renderMath(container);
+        }
+
+        // Answer checking
+        function checkAnswer(type, index) {
+            const userAnswer = document.getElementById(`answer-${type}-${index}`).value.trim();
+            const correctAnswer = exerciseData[type][index].answer;
+            const resultDiv = document.getElementById(`result-${type}-${index}`);
+            
+            // Simple answer checking (in real implementation, you'd want more sophisticated parsing)
+            const isCorrect = userAnswer.toLowerCase().replace(/\s/g, '') === correctAnswer.toLowerCase().replace(/\s/g, '');
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                        ✅ Benar! Jawaban Anda tepat.
+                    </div>
+                `;
+                currentProgress++;
+                updateProgress();
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                        ❌ Jawaban kurang tepat. Jawaban yang benar: <strong>${correctAnswer}</strong>
+                    </div>
+                `;
+            }
+        }
+
+        // Solution modal
+        function showSolution(type, index) {
+            const item = exerciseData[type][index];
+            const modal = document.getElementById('solution-modal');
+            const content = document.getElementById('solution-content');
+            
+            let stepsHtml = '<div class="space-y-4">';
+            stepsHtml += `<div class="bg-blue-50 p-4 rounded-lg">
+                <div class="math-container text-xl">Soal: $$${item.question}$$</div>
+            </div>`;
+            
+            item.steps.forEach((step, i) => {
+                stepsHtml += `
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                        <strong>Langkah ${i + 1}:</strong> ${step}
+                    </div>
+                `;
+            });
+            
+            stepsHtml += `<div class="bg-green-50 p-4 rounded-lg">
+                <strong>Jawaban Final:</strong> 
+                <div class="math-container text-xl">$$${item.question} = ${item.answer}$$</div>
+            </div></div>`;
+            
+            content.innerHTML = stepsHtml;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Re-render KaTeX
+            renderMath(content);
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solution-modal').classList.add('hidden');
+            document.getElementById('solution-modal').classList.remove('flex');
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            const percentage = (currentProgress / 8) * 100;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${currentProgress}/8`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('materi');
+            showExample('persekutuan');
+            showExercise('persekutuan');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('solution-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSolutionModal();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9632bbcf1701b772',t:'MTc1MzE4NTE2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
