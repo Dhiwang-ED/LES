@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Penyederhanaan Pecahan Aljabar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl font-bold text-center">📚 Penyederhanaan Pecahan Aljabar</h1>
+            <p class="text-center mt-2 text-blue-100">Belajar dengan mudah dan menyenangkan!</p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap justify-center mb-8 bg-white rounded-lg shadow-md p-2">
+            <button onclick="showSection('materi')" id="tab-materi" class="px-6 py-3 mx-2 my-1 rounded-lg font-semibold transition-all duration-300 bg-blue-600 text-white">
+                📖 Materi
+            </button>
+            <button onclick="showSection('contoh')" id="tab-contoh" class="px-6 py-3 mx-2 my-1 rounded-lg font-semibold transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                💡 Contoh
+            </button>
+            <button onclick="showSection('latihan')" id="tab-latihan" class="px-6 py-3 mx-2 my-1 rounded-lg font-semibold transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                ✏️ Latihan (20 Soal)
+            </button>
+        </div>
+
+        <!-- Materi Section -->
+        <div id="section-materi" class="section">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 p-2 rounded-lg mr-3">🎯</span>
+                    Pengertian Penyederhanaan Pecahan Aljabar
+                </h2>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg">
+                    <p class="text-gray-700 leading-relaxed">
+                        <strong>Penyederhanaan pecahan aljabar</strong> adalah proses memperkecil bentuk pecahan dengan membagi pembilang dan penyebut dengan faktor persekutuan terbesar (FPB).
+                    </p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <span class="bg-green-100 p-2 rounded-lg mr-3">📋</span>
+                    Langkah-langkah Penyederhanaan:
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+                        <h4 class="font-semibold text-green-800 mb-3">1️⃣ Faktorisasi</h4>
+                        <p class="text-gray-700">Faktorkan pembilang dan penyebut menjadi faktor-faktor prima atau bentuk yang lebih sederhana.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-lg border border-yellow-200">
+                        <h4 class="font-semibold text-yellow-800 mb-3">2️⃣ Identifikasi FPB</h4>
+                        <p class="text-gray-700">Cari faktor persekutuan terbesar dari pembilang dan penyebut.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
+                        <h4 class="font-semibold text-purple-800 mb-3">3️⃣ Coret Faktor Sama</h4>
+                        <p class="text-gray-700">Coret atau bagi faktor yang sama pada pembilang dan penyebut.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-lg border border-red-200">
+                        <h4 class="font-semibold text-red-800 mb-3">4️⃣ Tulis Hasil</h4>
+                        <p class="text-gray-700">Tulis bentuk yang sudah disederhanakan.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                    <h4 class="font-semibold text-indigo-800 mb-3 flex items-center">
+                        <span class="mr-2">⚠️</span> Hal Penting yang Perlu Diingat:
+                    </h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Pastikan pembilang dan penyebut sudah difaktorkan dengan benar</li>
+                        <li>Hanya faktor yang sama yang boleh dicoret</li>
+                        <li>Penyebut tidak boleh sama dengan nol</li>
+                        <li>Hasil akhir harus dalam bentuk paling sederhana</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contoh Section -->
+        <div id="section-contoh" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-green-100 p-2 rounded-lg mr-3">💡</span>
+                    Contoh Penyederhanaan
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- Contoh 1 -->
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
+                        <h3 class="font-semibold text-blue-800 mb-4">Contoh 1: Penyederhanaan Sederhana</h3>
+                        <div class="bg-white p-4 rounded-lg mb-4">
+                            <p class="text-lg mb-2">Sederhanakan: $$\frac{6x^2}{9x}$$</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p><strong>Langkah 1:</strong> Faktorisasi</p>
+                            <p class="ml-4">$$\frac{6x^2}{9x} = \frac{2 \cdot 3 \cdot x \cdot x}{3 \cdot 3 \cdot x}$$</p>
+                            <p><strong>Langkah 2:</strong> Coret faktor yang sama</p>
+                            <p class="ml-4">$$= \frac{2 \cdot \cancel{3} \cdot \cancel{x} \cdot x}{\cancel{3} \cdot 3 \cdot \cancel{x}}$$</p>
+                            <p><strong>Hasil:</strong> $$= \frac{2x}{3}$$</p>
+                        </div>
+                    </div>
+
+                    <!-- Contoh 2 -->
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+                        <h3 class="font-semibold text-green-800 mb-4">Contoh 2: Dengan Faktor Kuadrat</h3>
+                        <div class="bg-white p-4 rounded-lg mb-4">
+                            <p class="text-lg mb-2">Sederhanakan: $$\frac{x^2-4}{x^2+4x+4}$$</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p><strong>Langkah 1:</strong> Faktorisasi</p>
+                            <p class="ml-4">$$x^2-4 = (x-2)(x+2)$$</p>
+                            <p class="ml-4">$$x^2+4x+4 = (x+2)^2$$</p>
+                            <p><strong>Langkah 2:</strong> Substitusi dan coret</p>
+                            <p class="ml-4">$$\frac{(x-2)(x+2)}{(x+2)^2} = \frac{(x-2)\cancel{(x+2)}}{\cancel{(x+2)}(x+2)}$$</p>
+                            <p><strong>Hasil:</strong> $$= \frac{x-2}{x+2}$$</p>
+                        </div>
+                    </div>
+
+                    <!-- Contoh 3 -->
+                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
+                        <h3 class="font-semibold text-purple-800 mb-4">Contoh 3: Dengan Trinomial</h3>
+                        <div class="bg-white p-4 rounded-lg mb-4">
+                            <p class="text-lg mb-2">Sederhanakan: $$\frac{2x^2+6x}{x^2+3x}$$</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <p><strong>Langkah 1:</strong> Faktorisasi</p>
+                            <p class="ml-4">$$2x^2+6x = 2x(x+3)$$</p>
+                            <p class="ml-4">$$x^2+3x = x(x+3)$$</p>
+                            <p><strong>Langkah 2:</strong> Coret faktor yang sama</p>
+                            <p class="ml-4">$$\frac{2x(x+3)}{x(x+3)} = \frac{2\cancel{x}\cancel{(x+3)}}{\cancel{x}\cancel{(x+3)}}$$</p>
+                            <p><strong>Hasil:</strong> $$= 2$$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latihan Section -->
+        <div id="section-latihan" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-yellow-100 p-2 rounded-lg mr-3">✏️</span>
+                    Latihan Soal (20 Soal)
+                </h2>
+
+                <div class="mb-6 bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                    <p class="text-yellow-800 font-semibold">📝 Petunjuk:</p>
+                    <p class="text-gray-700 mt-2">Sederhanakan setiap pecahan aljabar berikut. Klik "Tampilkan Jawaban" untuk melihat solusi lengkap.</p>
+                </div>
+
+                <div class="grid gap-6" id="soal-container">
+                    <!-- Soal akan diisi oleh JavaScript -->
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="resetAllAnswers()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">
+                        🔄 Reset Semua Jawaban
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-300">© 2024 Pembelajaran Matematika Interaktif</p>
+            <p class="text-gray-400 text-sm mt-2">Belajar matematika dengan mudah dan menyenangkan! 🎓</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data soal latihan
+        const soalData = [
+            {
+                soal: "\\frac{4x}{8x^2}",
+                jawaban: "\\frac{1}{2x}",
+                langkah: [
+                    "Faktorisasi: \\frac{4x}{8x^2} = \\frac{4 \\cdot x}{4 \\cdot 2 \\cdot x \\cdot x}",
+                    "Coret faktor sama: \\frac{\\cancel{4} \\cdot \\cancel{x}}{\\cancel{4} \\cdot 2 \\cdot \\cancel{x} \\cdot x}",
+                    "Hasil: \\frac{1}{2x}"
+                ]
+            },
+            {
+                soal: "\\frac{6x^2y}{9xy^2}",
+                jawaban: "\\frac{2x}{3y}",
+                langkah: [
+                    "Faktorisasi: \\frac{6x^2y}{9xy^2} = \\frac{2 \\cdot 3 \\cdot x \\cdot x \\cdot y}{3 \\cdot 3 \\cdot x \\cdot y \\cdot y}",
+                    "Coret faktor sama: \\frac{2 \\cdot \\cancel{3} \\cdot \\cancel{x} \\cdot x \\cdot \\cancel{y}}{\\cancel{3} \\cdot 3 \\cdot \\cancel{x} \\cdot \\cancel{y} \\cdot y}",
+                    "Hasil: \\frac{2x}{3y}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2-9}{x+3}",
+                jawaban: "x-3",
+                langkah: [
+                    "Faktorisasi pembilang: x^2-9 = (x-3)(x+3)",
+                    "Substitusi: \\frac{(x-3)(x+3)}{x+3}",
+                    "Coret faktor sama: \\frac{(x-3)\\cancel{(x+3)}}{\\cancel{x+3}}",
+                    "Hasil: x-3"
+                ]
+            },
+            {
+                soal: "\\frac{2x+6}{x^2+3x}",
+                jawaban: "\\frac{2}{x}",
+                langkah: [
+                    "Faktorisasi: 2x+6 = 2(x+3), x^2+3x = x(x+3)",
+                    "Substitusi: \\frac{2(x+3)}{x(x+3)}",
+                    "Coret faktor sama: \\frac{2\\cancel{(x+3)}}{x\\cancel{(x+3)}}",
+                    "Hasil: \\frac{2}{x}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2+5x+6}{x^2+2x}",
+                jawaban: "\\frac{x+3}{x}",
+                langkah: [
+                    "Faktorisasi: x^2+5x+6 = (x+2)(x+3), x^2+2x = x(x+2)",
+                    "Substitusi: \\frac{(x+2)(x+3)}{x(x+2)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x+2)}(x+3)}{x\\cancel{(x+2)}}",
+                    "Hasil: \\frac{x+3}{x}"
+                ]
+            },
+            {
+                soal: "\\frac{3x^2-12}{6x-12}",
+                jawaban: "\\frac{x+2}{2}",
+                langkah: [
+                    "Faktorisasi: 3x^2-12 = 3(x^2-4) = 3(x-2)(x+2), 6x-12 = 6(x-2)",
+                    "Substitusi: \\frac{3(x-2)(x+2)}{6(x-2)}",
+                    "Coret faktor sama: \\frac{3\\cancel{(x-2)}(x+2)}{6\\cancel{(x-2)}} = \\frac{3(x+2)}{6}",
+                    "Hasil: \\frac{x+2}{2}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2-1}{x^2+2x+1}",
+                jawaban: "\\frac{x-1}{x+1}",
+                langkah: [
+                    "Faktorisasi: x^2-1 = (x-1)(x+1), x^2+2x+1 = (x+1)^2",
+                    "Substitusi: \\frac{(x-1)(x+1)}{(x+1)^2}",
+                    "Coret faktor sama: \\frac{(x-1)\\cancel{(x+1)}}{\\cancel{(x+1)}(x+1)}",
+                    "Hasil: \\frac{x-1}{x+1}"
+                ]
+            },
+            {
+                soal: "\\frac{4x^2+8x}{2x^2+4x}",
+                jawaban: "2",
+                langkah: [
+                    "Faktorisasi: 4x^2+8x = 4x(x+2), 2x^2+4x = 2x(x+2)",
+                    "Substitusi: \\frac{4x(x+2)}{2x(x+2)}",
+                    "Coret faktor sama: \\frac{4\\cancel{x}\\cancel{(x+2)}}{2\\cancel{x}\\cancel{(x+2)}}",
+                    "Hasil: \\frac{4}{2} = 2"
+                ]
+            },
+            {
+                soal: "\\frac{x^2-4x+4}{x^2-4}",
+                jawaban: "\\frac{x-2}{x+2}",
+                langkah: [
+                    "Faktorisasi: x^2-4x+4 = (x-2)^2, x^2-4 = (x-2)(x+2)",
+                    "Substitusi: \\frac{(x-2)^2}{(x-2)(x+2)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x-2)}(x-2)}{\\cancel{(x-2)}(x+2)}",
+                    "Hasil: \\frac{x-2}{x+2}"
+                ]
+            },
+            {
+                soal: "\\frac{5x^3}{15x^2}",
+                jawaban: "\\frac{x}{3}",
+                langkah: [
+                    "Faktorisasi: \\frac{5x^3}{15x^2} = \\frac{5 \\cdot x \\cdot x \\cdot x}{5 \\cdot 3 \\cdot x \\cdot x}",
+                    "Coret faktor sama: \\frac{\\cancel{5} \\cdot \\cancel{x} \\cdot \\cancel{x} \\cdot x}{\\cancel{5} \\cdot 3 \\cdot \\cancel{x} \\cdot \\cancel{x}}",
+                    "Hasil: \\frac{x}{3}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2+6x+9}{x+3}",
+                jawaban: "x+3",
+                langkah: [
+                    "Faktorisasi pembilang: x^2+6x+9 = (x+3)^2",
+                    "Substitusi: \\frac{(x+3)^2}{x+3}",
+                    "Coret faktor sama: \\frac{\\cancel{(x+3)}(x+3)}{\\cancel{x+3}}",
+                    "Hasil: x+3"
+                ]
+            },
+            {
+                soal: "\\frac{2x^2-8}{4x-8}",
+                jawaban: "\\frac{x+2}{2}",
+                langkah: [
+                    "Faktorisasi: 2x^2-8 = 2(x^2-4) = 2(x-2)(x+2), 4x-8 = 4(x-2)",
+                    "Substitusi: \\frac{2(x-2)(x+2)}{4(x-2)}",
+                    "Coret faktor sama: \\frac{2\\cancel{(x-2)}(x+2)}{4\\cancel{(x-2)}}",
+                    "Hasil: \\frac{2(x+2)}{4} = \\frac{x+2}{2}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2+4x+3}{x^2+x}",
+                jawaban: "\\frac{x+3}{x}",
+                langkah: [
+                    "Faktorisasi: x^2+4x+3 = (x+1)(x+3), x^2+x = x(x+1)",
+                    "Substitusi: \\frac{(x+1)(x+3)}{x(x+1)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x+1)}(x+3)}{x\\cancel{(x+1)}}",
+                    "Hasil: \\frac{x+3}{x}"
+                ]
+            },
+            {
+                soal: "\\frac{9x^2-16}{3x+4}",
+                jawaban: "3x-4",
+                langkah: [
+                    "Faktorisasi pembilang: 9x^2-16 = (3x)^2-4^2 = (3x-4)(3x+4)",
+                    "Substitusi: \\frac{(3x-4)(3x+4)}{3x+4}",
+                    "Coret faktor sama: \\frac{(3x-4)\\cancel{(3x+4)}}{\\cancel{3x+4}}",
+                    "Hasil: 3x-4"
+                ]
+            },
+            {
+                soal: "\\frac{x^3-8}{x^2-4}",
+                jawaban: "\\frac{x^2+2x+4}{x+2}",
+                langkah: [
+                    "Faktorisasi: x^3-8 = (x-2)(x^2+2x+4), x^2-4 = (x-2)(x+2)",
+                    "Substitusi: \\frac{(x-2)(x^2+2x+4)}{(x-2)(x+2)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x-2)}(x^2+2x+4)}{\\cancel{(x-2)}(x+2)}",
+                    "Hasil: \\frac{x^2+2x+4}{x+2}"
+                ]
+            },
+            {
+                soal: "\\frac{6x^2+12x}{3x^2+6x}",
+                jawaban: "2",
+                langkah: [
+                    "Faktorisasi: 6x^2+12x = 6x(x+2), 3x^2+6x = 3x(x+2)",
+                    "Substitusi: \\frac{6x(x+2)}{3x(x+2)}",
+                    "Coret faktor sama: \\frac{6\\cancel{x}\\cancel{(x+2)}}{3\\cancel{x}\\cancel{(x+2)}}",
+                    "Hasil: \\frac{6}{3} = 2"
+                ]
+            },
+            {
+                soal: "\\frac{x^2-6x+9}{x^2-9}",
+                jawaban: "\\frac{x-3}{x+3}",
+                langkah: [
+                    "Faktorisasi: x^2-6x+9 = (x-3)^2, x^2-9 = (x-3)(x+3)",
+                    "Substitusi: \\frac{(x-3)^2}{(x-3)(x+3)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x-3)}(x-3)}{\\cancel{(x-3)}(x+3)}",
+                    "Hasil: \\frac{x-3}{x+3}"
+                ]
+            },
+            {
+                soal: "\\frac{8x^3}{12x^2}",
+                jawaban: "\\frac{2x}{3}",
+                langkah: [
+                    "Faktorisasi: \\frac{8x^3}{12x^2} = \\frac{4 \\cdot 2 \\cdot x \\cdot x \\cdot x}{4 \\cdot 3 \\cdot x \\cdot x}",
+                    "Coret faktor sama: \\frac{\\cancel{4} \\cdot 2 \\cdot \\cancel{x} \\cdot \\cancel{x} \\cdot x}{\\cancel{4} \\cdot 3 \\cdot \\cancel{x} \\cdot \\cancel{x}}",
+                    "Hasil: \\frac{2x}{3}"
+                ]
+            },
+            {
+                soal: "\\frac{x^2+7x+12}{x^2+3x}",
+                jawaban: "\\frac{x+4}{x}",
+                langkah: [
+                    "Faktorisasi: x^2+7x+12 = (x+3)(x+4), x^2+3x = x(x+3)",
+                    "Substitusi: \\frac{(x+3)(x+4)}{x(x+3)}",
+                    "Coret faktor sama: \\frac{\\cancel{(x+3)}(x+4)}{x\\cancel{(x+3)}}",
+                    "Hasil: \\frac{x+4}{x}"
+                ]
+            },
+            {
+                soal: "\\frac{4x^2-1}{2x+1}",
+                jawaban: "2x-1",
+                langkah: [
+                    "Faktorisasi pembilang: 4x^2-1 = (2x)^2-1^2 = (2x-1)(2x+1)",
+                    "Substitusi: \\frac{(2x-1)(2x+1)}{2x+1}",
+                    "Coret faktor sama: \\frac{(2x-1)\\cancel{(2x+1)}}{\\cancel{2x+1}}",
+                    "Hasil: 2x-1"
+                ]
+            }
+        ];
+
+        // Fungsi untuk menampilkan section
+        function showSection(sectionName) {
+            // Sembunyikan semua section
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Tampilkan section yang dipilih
+            document.getElementById(`section-${sectionName}`).classList.remove('hidden');
+            
+            // Update tab styling
+            const tabs = document.querySelectorAll('[id^="tab-"]');
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-blue-600', 'text-white');
+                tab.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            
+            document.getElementById(`tab-${sectionName}`).classList.remove('bg-gray-200', 'text-gray-700');
+            document.getElementById(`tab-${sectionName}`).classList.add('bg-blue-600', 'text-white');
+            
+            // Jika section latihan, generate soal
+            if (sectionName === 'latihan') {
+                generateSoal();
+            }
+        }
+
+        // Fungsi untuk generate soal
+        function generateSoal() {
+            const container = document.getElementById('soal-container');
+            container.innerHTML = '';
+            
+            soalData.forEach((item, index) => {
+                const soalDiv = document.createElement('div');
+                soalDiv.className = 'bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200';
+                soalDiv.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="font-semibold text-gray-800 flex items-center">
+                            <span class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">${index + 1}</span>
+                            Soal ${index + 1}
+                        </h3>
+                        <button onclick="toggleAnswer(${index})" id="btn-${index}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">
+                            👁️ Tampilkan Jawaban
+                        </button>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg mb-4 border-2 border-blue-200">
+                        <p class="text-lg">Sederhanakan: $$${item.soal}$$</p>
+                    </div>
+                    <div class="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-semibold text-yellow-800 flex items-center">
+                                <span class="mr-2">✏️</span> Area Coretan Digital
+                            </h4>
+                            <div class="flex gap-2">
+                                <button onclick="clearCanvas(${index})" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-300">
+                                    🗑️ Hapus
+                                </button>
+                                <select onchange="changeColor(${index}, this.value)" class="bg-white border border-gray-300 rounded px-2 py-1 text-sm">
+                                    <option value="#000000">⚫ Hitam</option>
+                                    <option value="#ff0000">🔴 Merah</option>
+                                    <option value="#0000ff">🔵 Biru</option>
+                                    <option value="#008000">🟢 Hijau</option>
+                                    <option value="#800080">🟣 Ungu</option>
+                                </select>
+                                <select onchange="changeSize(${index}, this.value)" class="bg-white border border-gray-300 rounded px-2 py-1 text-sm">
+                                    <option value="2">Tipis</option>
+                                    <option value="4" selected>Normal</option>
+                                    <option value="6">Tebal</option>
+                                    <option value="8">Sangat Tebal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <canvas id="canvas-${index}" width="600" height="300" class="border-2 border-gray-300 rounded-lg bg-white cursor-crosshair w-full" style="max-width: 100%; height: 200px;"></canvas>
+                        <p class="text-sm text-gray-600 mt-2">💡 Gunakan mouse atau jari untuk menulis dan mencoret di area ini</p>
+                    </div>
+                    <div id="answer-${index}" class="hidden">
+                        <div class="bg-green-50 border border-green-200 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-3 flex items-center">
+                                <span class="mr-2">✅</span> Jawaban:
+                            </h4>
+                            <div class="bg-white p-3 rounded-lg mb-4 border-2 border-green-300">
+                                <p class="text-lg font-semibold text-center">$$${item.jawaban}$$</p>
+                            </div>
+                            <h4 class="font-semibold text-green-800 mb-3 flex items-center">
+                                <span class="mr-2">📝</span> Langkah Penyelesaian:
+                            </h4>
+                            <div class="space-y-2">
+                                ${item.langkah.map((langkah, i) => `
+                                    <div class="bg-white p-3 rounded-lg border border-green-200">
+                                        <p class="text-gray-700">$$${langkah}$$</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(soalDiv);
+                
+                // Initialize canvas after DOM is updated
+                setTimeout(() => initCanvas(index), 100);
+            });
+            
+            // Re-render MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Fungsi untuk toggle jawaban
+        function toggleAnswer(index) {
+            const answerDiv = document.getElementById(`answer-${index}`);
+            const button = document.getElementById(`btn-${index}`);
+            
+            if (answerDiv.classList.contains('hidden')) {
+                answerDiv.classList.remove('hidden');
+                button.innerHTML = '🙈 Sembunyikan Jawaban';
+                button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                button.classList.add('bg-red-500', 'hover:bg-red-600');
+                
+                // Re-render MathJax untuk jawaban yang baru ditampilkan
+                if (window.MathJax) {
+                    MathJax.typesetPromise([answerDiv]);
+                }
+            } else {
+                answerDiv.classList.add('hidden');
+                button.innerHTML = '👁️ Tampilkan Jawaban';
+                button.classList.remove('bg-red-500', 'hover:bg-red-600');
+                button.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }
+        }
+
+        // Fungsi untuk reset semua jawaban
+        function resetAllAnswers() {
+            soalData.forEach((_, index) => {
+                const answerDiv = document.getElementById(`answer-${index}`);
+                const button = document.getElementById(`btn-${index}`);
+                
+                if (answerDiv && !answerDiv.classList.contains('hidden')) {
+                    answerDiv.classList.add('hidden');
+                    button.innerHTML = '👁️ Tampilkan Jawaban';
+                    button.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    button.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                }
+            });
+        }
+
+        // Canvas drawing functionality
+        let canvasStates = {};
+        
+        function initCanvas(index) {
+            const canvas = document.getElementById(`canvas-${index}`);
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let currentColor = '#000000';
+            let currentSize = 4;
+            
+            // Set canvas size properly
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * 2; // High DPI
+            canvas.height = rect.height * 2;
+            ctx.scale(2, 2);
+            
+            // Store canvas state
+            canvasStates[index] = {
+                canvas: canvas,
+                ctx: ctx,
+                color: currentColor,
+                size: currentSize
+            };
+            
+            // Mouse events
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            // Touch events for mobile
+            canvas.addEventListener('touchstart', handleTouch);
+            canvas.addEventListener('touchmove', handleTouch);
+            canvas.addEventListener('touchend', stopDrawing);
+            
+            function startDrawing(e) {
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ctx.lineWidth = currentSize;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = currentColor;
+                
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+                ctx.beginPath();
+            }
+            
+            function handleTouch(e) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
+                                                 e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }
+        }
+        
+        function clearCanvas(index) {
+            const state = canvasStates[index];
+            if (state) {
+                state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height);
+            }
+        }
+        
+        function changeColor(index, color) {
+            const state = canvasStates[index];
+            if (state) {
+                state.color = color;
+                // Update current drawing color for this canvas
+                const canvas = state.canvas;
+                canvas.addEventListener('mousedown', function() {
+                    state.ctx.strokeStyle = color;
+                });
+            }
+        }
+        
+        function changeSize(index, size) {
+            const state = canvasStates[index];
+            if (state) {
+                state.size = parseInt(size);
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('materi');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966c79daa7aee785',t:'MTc1Mzc5MDYzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
