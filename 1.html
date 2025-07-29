@@ -541,8 +541,7 @@
             
             const ctx = canvas.getContext('2d');
             let isDrawing = false;
-            let currentColor = '#000000';
-            let currentSize = 4;
+            let hasMoved = false;
             
             // Set canvas size properly
             const rect = canvas.getBoundingClientRect();
@@ -554,62 +553,95 @@
             canvasStates[index] = {
                 canvas: canvas,
                 ctx: ctx,
-                color: currentColor,
-                size: currentSize
+                color: '#000000',
+                size: 4,
+                isDrawing: false,
+                hasMoved: false
             };
             
             // Mouse events
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
+            canvas.addEventListener('mousedown', (e) => startDrawing(e, index));
+            canvas.addEventListener('mousemove', (e) => draw(e, index));
+            canvas.addEventListener('mouseup', (e) => stopDrawing(e, index));
+            canvas.addEventListener('mouseout', (e) => stopDrawing(e, index));
             
             // Touch events for mobile
-            canvas.addEventListener('touchstart', handleTouch);
-            canvas.addEventListener('touchmove', handleTouch);
-            canvas.addEventListener('touchend', stopDrawing);
+            canvas.addEventListener('touchstart', (e) => handleTouch(e, index, 'start'));
+            canvas.addEventListener('touchmove', (e) => handleTouch(e, index, 'move'));
+            canvas.addEventListener('touchend', (e) => handleTouch(e, index, 'end'));
             
-            function startDrawing(e) {
-                isDrawing = true;
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-            }
-            
-            function draw(e) {
-                if (!isDrawing) return;
+            function startDrawing(e, canvasIndex) {
+                const state = canvasStates[canvasIndex];
+                state.isDrawing = true;
+                state.hasMoved = false;
                 
                 const rect = canvas.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                ctx.lineWidth = currentSize;
-                ctx.lineCap = 'round';
-                ctx.strokeStyle = currentColor;
+                state.ctx.beginPath();
+                state.ctx.moveTo(x, y);
                 
-                ctx.lineTo(x, y);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(x, y);
+                // Set current drawing properties
+                state.ctx.lineWidth = state.size;
+                state.ctx.lineCap = 'round';
+                state.ctx.strokeStyle = state.color;
             }
             
-            function stopDrawing() {
-                isDrawing = false;
-                ctx.beginPath();
+            function draw(e, canvasIndex) {
+                const state = canvasStates[canvasIndex];
+                if (!state.isDrawing) return;
+                
+                state.hasMoved = true;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                state.ctx.lineTo(x, y);
+                state.ctx.stroke();
+                state.ctx.beginPath();
+                state.ctx.moveTo(x, y);
             }
             
-            function handleTouch(e) {
+            function stopDrawing(e, canvasIndex) {
+                const state = canvasStates[canvasIndex];
+                if (!state.isDrawing) return;
+                
+                // If mouse didn't move, draw a dot
+                if (!state.hasMoved) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    state.ctx.beginPath();
+                    state.ctx.arc(x, y, state.size / 2, 0, Math.PI * 2);
+                    state.ctx.fillStyle = state.color;
+                    state.ctx.fill();
+                }
+                
+                state.isDrawing = false;
+                state.hasMoved = false;
+                state.ctx.beginPath();
+            }
+            
+            function handleTouch(e, canvasIndex, type) {
                 e.preventDefault();
-                const touch = e.touches[0];
-                const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
-                                                 e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                const touch = e.touches[0] || e.changedTouches[0];
+                const rect = canvas.getBoundingClientRect();
+                
+                const mouseEvent = {
                     clientX: touch.clientX,
                     clientY: touch.clientY
-                });
-                canvas.dispatchEvent(mouseEvent);
+                };
+                
+                if (type === 'start') {
+                    startDrawing(mouseEvent, canvasIndex);
+                } else if (type === 'move' && e.touches.length > 0) {
+                    draw(mouseEvent, canvasIndex);
+                } else if (type === 'end') {
+                    stopDrawing(mouseEvent, canvasIndex);
+                }
             }
         }
         
@@ -624,11 +656,6 @@
             const state = canvasStates[index];
             if (state) {
                 state.color = color;
-                // Update current drawing color for this canvas
-                const canvas = state.canvas;
-                canvas.addEventListener('mousedown', function() {
-                    state.ctx.strokeStyle = color;
-                });
             }
         }
         
@@ -644,5 +671,5 @@
             showSection('materi');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966c79daa7aee785',t:'MTc1Mzc5MDYzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966c99e0b005e77e',t:'MTc1Mzc5MTk0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
