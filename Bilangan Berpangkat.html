@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Bilangan Berpangkat - Kelas 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .math-input {
+            font-family: 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .fraction-display {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 2px;
+        }
+        
+        .fraction-display .numerator {
+            display: block;
+            border-bottom: 1px solid #333;
+            padding: 0 4px 2px;
+            font-size: 0.9em;
+        }
+        
+        .fraction-display .denominator {
+            display: block;
+            padding: 2px 4px 0;
+            font-size: 0.9em;
+        }
+        .superscript {
+            vertical-align: super;
+            font-size: 0.7em;
+        }
+        .subscript {
+            vertical-align: sub;
+            font-size: 0.7em;
+        }
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .fraction-top {
+            border-bottom: 1px solid #000;
+            padding: 0 2px;
+        }
+        .fraction-bottom {
+            padding: 0 2px;
+        }
+        .math-display {
+            font-family: 'Times New Roman', serif;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .keyboard-btn {
+            transition: all 0.2s;
+        }
+        .keyboard-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .keyboard-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-center text-indigo-800 mb-2">📚 LKPD Bilangan Berpangkat</h1>
+            <p class="text-center text-gray-600">Kelas 9 - Matematika</p>
+            <div class="flex justify-center mt-4 space-x-4">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Bilangan Berpangkat Positif</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Bilangan Berpangkat Negatif</span>
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Sifat Bilangan Berpangkat</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto">
+            <!-- Materi Section -->
+            <div>
+                <!-- Tab Navigation -->
+                <div class="bg-white rounded-xl shadow-lg mb-6">
+                    <div class="grid grid-cols-3 md:grid-cols-7 border-b text-sm">
+                        <button onclick="showTab('definisi')" id="tab-definisi" class="py-3 px-2 text-center font-semibold text-indigo-600 border-b-2 border-indigo-600">📚 Definisi</button>
+                        <button onclick="showTab('positif')" id="tab-positif" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">➕ Pangkat Positif</button>
+                        <button onclick="showTab('negatif')" id="tab-negatif" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">➖ Pangkat Negatif</button>
+                        <button onclick="showTab('sifat-kali')" id="tab-sifat-kali" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">✖️ Sifat Kali</button>
+                        <button onclick="showTab('sifat-bagi')" id="tab-sifat-bagi" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">➗ Sifat Bagi</button>
+                        <button onclick="showTab('pangkat-pangkat')" id="tab-pangkat-pangkat" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">🔄 Pangkat Pangkat</button>
+                        <button onclick="showTab('sifat-khusus')" id="tab-sifat-khusus" class="py-3 px-2 text-center font-semibold text-gray-500 hover:text-indigo-600">⭐ Sifat Khusus</button>
+                    </div>
+
+                    <!-- Tab 1: Definisi -->
+                    <div id="content-definisi" class="p-6">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">📚 Definisi Bilangan Berpangkat</h2>
+                                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                    <p class="mb-3">Bilangan berpangkat adalah perkalian berulang dari bilangan yang sama.</p>
+                                    <div class="math-display bg-white p-3 rounded border text-center">
+                                        a<sup>n</sup> = a × a × a × ... × a (sebanyak n kali)
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-2">Dimana: a = bilangan pokok, n = pangkat/eksponen</p>
+                                </div>
+                                
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-yellow-800 mb-2">💡 Contoh:</h4>
+                                    <div class="space-y-2">
+                                        <div class="math-display bg-white p-2 rounded">2<sup>4</sup> = 2 × 2 × 2 × 2 = 16</div>
+                                        <div class="math-display bg-white p-2 rounded">3<sup>3</sup> = 3 × 3 × 3 = 27</div>
+                                        <div class="math-display bg-white p-2 rounded">5<sup>1</sup> = 5</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generateDefinisiProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="definisi-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Pangkat Positif -->
+                    <div id="content-positif" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Bilangan Berpangkat Positif</h2>
+                                <div class="bg-green-50 p-4 rounded-lg mb-4">
+                                    <p class="mb-3">Bilangan berpangkat positif adalah bilangan yang dipangkatkan dengan bilangan bulat positif.</p>
+                                    <div class="space-y-2">
+                                        <div class="math-display bg-white p-2 rounded">2<sup>3</sup> = 2 × 2 × 2 = 8</div>
+                                        <div class="math-display bg-white p-2 rounded">4<sup>2</sup> = 4 × 4 = 16</div>
+                                        <div class="math-display bg-white p-2 rounded">10<sup>3</sup> = 10 × 10 × 10 = 1000</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-blue-800 mb-2">📝 Aturan Khusus:</h4>
+                                    <div class="space-y-1 text-sm">
+                                        <div>• Setiap bilangan pangkat 1 = bilangan itu sendiri</div>
+                                        <div>• Setiap bilangan pangkat 0 = 1 (kecuali 0<sup>0</sup>)</div>
+                                        <div>• Pangkat genap dari bilangan negatif = positif</div>
+                                        <div>• Pangkat ganjil dari bilangan negatif = negatif</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generatePositifProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="positif-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Pangkat Negatif -->
+                    <div id="content-negatif" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">➖ Bilangan Berpangkat Negatif</h2>
+                                <div class="bg-red-50 p-4 rounded-lg mb-4">
+                                    <p class="mb-3">Bilangan berpangkat negatif adalah kebalikan dari bilangan berpangkat positif.</p>
+                                    <div class="math-display bg-white p-3 rounded border text-center mb-3">
+                                        a<sup>-n</sup> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">a<sup>n</sup></span></span>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="math-display bg-white p-2 rounded">2<sup>-3</sup> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">2<sup>3</sup></span></span> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">8</span></span></div>
+                                        <div class="math-display bg-white p-2 rounded">5<sup>-2</sup> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">5<sup>2</sup></span></span> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">25</span></span></div>
+                                        <div class="math-display bg-white p-2 rounded">10<sup>-1</sup> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">10</span></span> = 0,1</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-orange-800 mb-2">⚡ Tips Cepat:</h4>
+                                    <div class="text-sm">
+                                        <div>• Pangkat negatif = "balik" dan jadikan positif</div>
+                                        <div>• <span class="math-display">(<span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">a</span></span>)<sup>-n</sup> = a<sup>n</sup></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generateNegatifProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="negatif-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Sifat Perkalian -->
+                    <div id="content-sifat-kali" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">✖️ Sifat Perkalian Bilangan Berpangkat</h2>
+                                <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-purple-800">1. Perkalian dengan basis sama:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 2<sup>3</sup> × 2<sup>4</sup> = 2<sup>7</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-purple-800">2. Perkalian dengan pangkat sama:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>n</sup> × b<sup>n</sup> = (a × b)<sup>n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 2<sup>3</sup> × 5<sup>3</sup> = (2 × 5)<sup>3</sup> = 10<sup>3</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-purple-800">3. Perkalian bilangan dengan variabel:</strong><br>
+                                            <div class="math-display text-center mt-2">3 × a<sup>n</sup> = 3a<sup>n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 4 × x<sup>2</sup> = 4x<sup>2</sup></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-orange-800 mb-2">⚡ Tips Cepat:</h4>
+                                    <div class="text-sm">
+                                        <div>• Basis sama → tambahkan pangkat</div>
+                                        <div>• Pangkat sama → kalikan basis</div>
+                                        <div>• Ingat urutan operasi matematika</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generateSifatKaliProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="sifat-kali-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 5: Sifat Pembagian -->
+                    <div id="content-sifat-bagi" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">➗ Sifat Pembagian Bilangan Berpangkat</h2>
+                                <div class="bg-teal-50 p-4 rounded-lg mb-4">
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-teal-800">1. Pembagian dengan basis sama:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 3<sup>5</sup> ÷ 3<sup>2</sup> = 3<sup>3</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-teal-800">2. Pembagian dengan pangkat sama:</strong><br>
+                                            <div class="math-display text-center mt-2"><span class="fraction"><span class="fraction-top">a<sup>n</sup></span><br><span class="fraction-bottom">b<sup>n</sup></span></span> = (<span class="fraction"><span class="fraction-top">a</span><br><span class="fraction-bottom">b</span></span>)<sup>n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: <span class="fraction"><span class="fraction-top">6<sup>3</sup></span><br><span class="fraction-bottom">2<sup>3</sup></span></span> = 3<sup>3</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-teal-800">3. Pembagian menghasilkan pangkat negatif:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>2</sup> ÷ a<sup>5</sup> = a<sup>-3</sup> = <span class="fraction"><span class="fraction-top">1</span><br><span class="fraction-bottom">a<sup>3</sup></span></span></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 2<sup>2</sup> ÷ 2<sup>5</sup> = 2<sup>-3</sup></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-red-800 mb-2">⚠️ Perhatikan:</h4>
+                                    <div class="text-sm">
+                                        <div>• Basis sama → kurangkan pangkat</div>
+                                        <div>• Jika pangkat pembagi > pangkat yang dibagi → hasil negatif</div>
+                                        <div>• Pangkat negatif = pecahan</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generateSifatBagiProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="sifat-bagi-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 6: Pangkat dari Pangkat -->
+                    <div id="content-pangkat-pangkat" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">🔄 Pangkat dari Pangkat</h2>
+                                <div class="bg-indigo-50 p-4 rounded-lg mb-4">
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-indigo-800">1. Pangkat dari Pangkat:</strong><br>
+                                            <div class="math-display text-center mt-2">(a<sup>m</sup>)<sup>n</sup> = a<sup>m×n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: (2<sup>3</sup>)<sup>4</sup> = 2<sup>12</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-indigo-800">2. Pangkat dari Perkalian:</strong><br>
+                                            <div class="math-display text-center mt-2">(a × b)<sup>n</sup> = a<sup>n</sup> × b<sup>n</sup></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: (3 × 4)<sup>2</sup> = 3<sup>2</sup> × 4<sup>2</sup></div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-indigo-800">3. Pangkat dari Pembagian:</strong><br>
+                                            <div class="math-display text-center mt-2">(<span class="fraction"><span class="fraction-top">a</span><br><span class="fraction-bottom">b</span></span>)<sup>n</sup> = <span class="fraction"><span class="fraction-top">a<sup>n</sup></span><br><span class="fraction-bottom">b<sup>n</sup></span></span></div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: (<span class="fraction"><span class="fraction-top">2</span><br><span class="fraction-bottom">3</span></span>)<sup>3</sup> = <span class="fraction"><span class="fraction-top">2<sup>3</sup></span><br><span class="fraction-bottom">3<sup>3</sup></span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-800 mb-2">💡 Strategi:</h4>
+                                    <div class="text-sm">
+                                        <div>• Pangkat luar × pangkat dalam</div>
+                                        <div>• Distribusikan pangkat ke setiap faktor</div>
+                                        <div>• Hitung dari dalam ke luar</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generatePangkatPangkatProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="pangkat-pangkat-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 7: Sifat Khusus -->
+                    <div id="content-sifat-khusus" class="p-6 hidden">
+                        <div class="grid lg:grid-cols-2 gap-6">
+                            <!-- Materi -->
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">⭐ Sifat Khusus Bilangan Berpangkat</h2>
+                                <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-yellow-800">1. Pangkat Nol:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>0</sup> = 1 (a ≠ 0)</div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 5<sup>0</sup> = 1, 100<sup>0</sup> = 1</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-yellow-800">2. Pangkat Satu:</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>1</sup> = a</div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 7<sup>1</sup> = 7, x<sup>1</sup> = x</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-yellow-800">3. Pangkat Pecahan (Akar):</strong><br>
+                                            <div class="math-display text-center mt-2">a<sup>1/n</sup> = <sup>n</sup>√a</div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: 8<sup>1/3</sup> = ³√8 = 2</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded">
+                                            <strong class="text-yellow-800">4. Basis Negatif:</strong><br>
+                                            <div class="math-display text-center mt-2">(-a)<sup>n</sup> = a<sup>n</sup> (jika n genap)<br>(-a)<sup>n</sup> = -a<sup>n</sup> (jika n ganjil)</div>
+                                            <div class="text-sm text-gray-600 mt-1">Contoh: (-2)<sup>4</sup> = 16, (-2)<sup>3</sup> = -8</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-pink-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-pink-800 mb-2">🎯 Ingat Selalu:</h4>
+                                    <div class="text-sm">
+                                        <div>• Setiap bilangan pangkat 0 = 1</div>
+                                        <div>• Pangkat genap dari negatif = positif</div>
+                                        <div>• Pangkat ganjil dari negatif = negatif</div>
+                                        <div>• Pangkat pecahan = akar</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Latihan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">✏️ Latihan Soal</h3>
+                                    <button onclick="generateSifatKhususProblems()" class="bg-indigo-600 text-white px-3 py-1 rounded text-sm hover:bg-indigo-700 transition">🔄 Soal Baru</button>
+                                </div>
+                                <div id="sifat-khusus-problems" class="space-y-4">
+                                    <!-- Problems will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let activeInput = null;
+        let activeInputDisplay = null;
+
+        // Tab Management
+        function showTab(tabName) {
+            // Hide all content
+            const tabs = ['definisi', 'positif', 'negatif', 'sifat-kali', 'sifat-bagi', 'pangkat-pangkat', 'sifat-khusus'];
+            tabs.forEach(tab => {
+                document.getElementById('content-' + tab).classList.add('hidden');
+                document.getElementById('tab-' + tab).classList.remove('text-indigo-600', 'border-indigo-600');
+                document.getElementById('tab-' + tab).classList.add('text-gray-500');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.remove('text-gray-500');
+            document.getElementById('tab-' + tabName).classList.add('text-indigo-600', 'border-indigo-600');
+            
+            // Generate problems for the selected tab
+            switch(tabName) {
+                case 'definisi':
+                    generateDefinisiProblems();
+                    break;
+                case 'positif':
+                    generatePositifProblems();
+                    break;
+                case 'negatif':
+                    generateNegatifProblems();
+                    break;
+                case 'sifat-kali':
+                    generateSifatKaliProblems();
+                    break;
+                case 'sifat-bagi':
+                    generateSifatBagiProblems();
+                    break;
+                case 'pangkat-pangkat':
+                    generatePangkatPangkatProblems();
+                    break;
+                case 'sifat-khusus':
+                    generateSifatKhususProblems();
+                    break;
+            }
+        }
+
+        // Virtual Keyboard Functions for Individual Inputs
+        function insertToInput(inputId, symbol) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                const cursorPos = input.selectionStart || input.value.length;
+                const value = input.value;
+                input.value = value.slice(0, cursorPos) + symbol + value.slice(cursorPos);
+                input.focus();
+                input.setSelectionRange(cursorPos + symbol.length, cursorPos + symbol.length);
+                formatMathInput(input);
+            }
+        }
+
+        function formatMathInput(input) {
+            const originalValue = input.value;
+            const cursorPos = input.selectionStart;
+            
+            // Convert mathematical notation to display format
+            let formattedValue = originalValue;
+            
+            // Handle fractions first: a/b -> proper fraction display
+            formattedValue = formattedValue.replace(/([^\/\s]+)\/([^\/\s]+)/g, (match, numerator, denominator) => {
+                // Handle powers in numerator and denominator
+                let formattedNum = numerator.replace(/\^(\([^)]+\))/g, (m, g) => convertToSuperscript(g.slice(1, -1)));
+                formattedNum = formattedNum.replace(/\^([a-zA-Z0-9+-]+)/g, (m, g) => convertToSuperscript(g));
+                
+                let formattedDen = denominator.replace(/\^(\([^)]+\))/g, (m, g) => convertToSuperscript(g.slice(1, -1)));
+                formattedDen = formattedDen.replace(/\^([a-zA-Z0-9+-]+)/g, (m, g) => convertToSuperscript(g));
+                
+                return `${formattedNum}/${formattedDen}`;
+            });
+            
+            // Handle powers: 2^3 -> 2³, 2^(3+4) -> 2³⁺⁴, 2^x -> 2ˣ
+            formattedValue = formattedValue.replace(/\^(\([^)]+\))/g, (match, group) => {
+                // Remove parentheses and convert each character
+                const content = group.slice(1, -1);
+                return convertToSuperscript(content);
+            });
+            
+            formattedValue = formattedValue.replace(/\^([a-zA-Z0-9+-]+)/g, (match, group) => {
+                return convertToSuperscript(group);
+            });
+            
+            // Handle subscripts if needed: H_2 -> H₂
+            formattedValue = formattedValue.replace(/_([a-zA-Z0-9]+)/g, (match, group) => {
+                return convertToSubscript(group);
+            });
+            
+            // Update input if changed
+            if (formattedValue !== originalValue) {
+                input.value = formattedValue;
+                // Try to maintain cursor position
+                const newCursorPos = Math.min(cursorPos, formattedValue.length);
+                input.setSelectionRange(newCursorPos, newCursorPos);
+            }
+        }
+
+        function convertToSuperscript(text) {
+            const superscriptMap = {
+                '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+                '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+                '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾',
+                'a': 'ᵃ', 'b': 'ᵇ', 'c': 'ᶜ', 'd': 'ᵈ', 'e': 'ᵉ',
+                'f': 'ᶠ', 'g': 'ᵍ', 'h': 'ʰ', 'i': 'ⁱ', 'j': 'ʲ',
+                'k': 'ᵏ', 'l': 'ˡ', 'm': 'ᵐ', 'n': 'ⁿ', 'o': 'ᵒ',
+                'p': 'ᵖ', 'q': 'ᵠ', 'r': 'ʳ', 's': 'ˢ', 't': 'ᵗ',
+                'u': 'ᵘ', 'v': 'ᵛ', 'w': 'ʷ', 'x': 'ˣ', 'y': 'ʸ', 'z': 'ᶻ'
+            };
+            
+            return text.split('').map(char => superscriptMap[char] || char).join('');
+        }
+
+        function convertToSubscript(text) {
+            const subscriptMap = {
+                '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+                '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+                '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎',
+                'a': 'ₐ', 'e': 'ₑ', 'h': 'ₕ', 'i': 'ᵢ', 'j': 'ⱼ',
+                'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'o': 'ₒ',
+                'p': 'ₚ', 'r': 'ᵣ', 's': 'ₛ', 't': 'ₜ', 'u': 'ᵤ',
+                'v': 'ᵥ', 'x': 'ₓ'
+            };
+            
+            return text.split('').map(char => subscriptMap[char] || char).join('');
+        }
+
+        function clearInput(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function backspaceInput(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                const cursorPos = input.selectionStart || input.value.length;
+                if (cursorPos > 0) {
+                    const value = input.value;
+                    input.value = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
+                    input.focus();
+                    input.setSelectionRange(cursorPos - 1, cursorPos - 1);
+                }
+            }
+        }
+
+        function setInputValue(inputId, value) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.value = value;
+                input.focus();
+                input.setSelectionRange(value.length, value.length);
+                formatMathInput(input);
+            }
+        }
+
+        // Add event listener for real-time formatting
+        function addMathFormatting(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.addEventListener('input', function() {
+                    formatMathInput(this);
+                });
+                
+                input.addEventListener('keyup', function() {
+                    formatMathInput(this);
+                });
+            }
+        }
+
+        // Problem Generators for Each Tab
+        function generateDefinisiProblems() {
+            const container = document.getElementById('definisi-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Tuliskan dalam bentuk perkalian berulang: 3⁴', answer: '3 × 3 × 3 × 3', type: 'expand' },
+                    { question: 'Hitunglah: 2⁵', answer: '32', type: 'calculate' },
+                    { question: 'Tuliskan dalam bentuk pangkat: 5 × 5 × 5', answer: '5³', type: 'simplify' },
+                    { question: 'Hitunglah: 4³', answer: '64', type: 'calculate' },
+                    { question: 'Berapa nilai dari 7¹?', answer: '7', type: 'basic' }
+                ],
+                [
+                    { question: 'Tuliskan dalam bentuk perkalian berulang: 2⁶', answer: '2 × 2 × 2 × 2 × 2 × 2', type: 'expand' },
+                    { question: 'Hitunglah: 3⁴', answer: '81', type: 'calculate' },
+                    { question: 'Tuliskan dalam bentuk pangkat: 4 × 4 × 4 × 4', answer: '4⁴', type: 'simplify' },
+                    { question: 'Hitunglah: 5²', answer: '25', type: 'calculate' },
+                    { question: 'Berapa nilai dari 9¹?', answer: '9', type: 'basic' }
+                ],
+                [
+                    { question: 'Tuliskan dalam bentuk perkalian berulang: 6³', answer: '6 × 6 × 6', type: 'expand' },
+                    { question: 'Hitunglah: 2⁴', answer: '16', type: 'calculate' },
+                    { question: 'Tuliskan dalam bentuk pangkat: 7 × 7', answer: '7²', type: 'simplify' },
+                    { question: 'Hitunglah: 3³', answer: '27', type: 'calculate' },
+                    { question: 'Berapa nilai dari 15¹?', answer: '15', type: 'basic' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'definisi');
+                container.appendChild(div);
+            });
+        }
+
+        function generatePositifProblems() {
+            const container = document.getElementById('positif-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Hitunglah: 3⁴', answer: '81', type: 'calculate' },
+                    { question: 'Hitunglah: (-2)³', answer: '-8', type: 'negative-base' },
+                    { question: 'Hitunglah: (-3)²', answer: '9', type: 'negative-base' },
+                    { question: 'Berapa nilai dari 10³?', answer: '1000', type: 'calculate' },
+                    { question: 'Hitunglah: 6²', answer: '36', type: 'calculate' }
+                ],
+                [
+                    { question: 'Hitunglah: 2⁶', answer: '64', type: 'calculate' },
+                    { question: 'Hitunglah: (-4)²', answer: '16', type: 'negative-base' },
+                    { question: 'Hitunglah: (-1)⁵', answer: '-1', type: 'negative-base' },
+                    { question: 'Berapa nilai dari 5⁴?', answer: '625', type: 'calculate' },
+                    { question: 'Hitunglah: 8²', answer: '64', type: 'calculate' }
+                ],
+                [
+                    { question: 'Hitunglah: 4³', answer: '64', type: 'calculate' },
+                    { question: 'Hitunglah: (-5)²', answer: '25', type: 'negative-base' },
+                    { question: 'Hitunglah: (-2)⁴', answer: '16', type: 'negative-base' },
+                    { question: 'Berapa nilai dari 7²?', answer: '49', type: 'calculate' },
+                    { question: 'Hitunglah: 9²', answer: '81', type: 'calculate' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'positif');
+                container.appendChild(div);
+            });
+        }
+
+        function generateNegatifProblems() {
+            const container = document.getElementById('negatif-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Hitunglah: 2⁻³', answer: '1/8', type: 'negative-power' },
+                    { question: 'Ubah ke bentuk pecahan: 5⁻²', answer: '1/25', type: 'fraction' },
+                    { question: 'Hitunglah: 10⁻¹', answer: '0.1', type: 'decimal' },
+                    { question: 'Sederhanakan: (1/3)⁻²', answer: '9', type: 'fraction-negative' },
+                    { question: 'Hitunglah: 4⁻²', answer: '1/16', type: 'negative-power' }
+                ],
+                [
+                    { question: 'Hitunglah: 3⁻²', answer: '1/9', type: 'negative-power' },
+                    { question: 'Ubah ke bentuk pecahan: 2⁻⁴', answer: '1/16', type: 'fraction' },
+                    { question: 'Hitunglah: 10⁻²', answer: '0.01', type: 'decimal' },
+                    { question: 'Sederhanakan: (1/2)⁻³', answer: '8', type: 'fraction-negative' },
+                    { question: 'Hitunglah: 6⁻¹', answer: '1/6', type: 'negative-power' }
+                ],
+                [
+                    { question: 'Hitunglah: 5⁻¹', answer: '1/5', type: 'negative-power' },
+                    { question: 'Ubah ke bentuk pecahan: 3⁻³', answer: '1/27', type: 'fraction' },
+                    { question: 'Hitunglah: 10⁻³', answer: '0.001', type: 'decimal' },
+                    { question: 'Sederhanakan: (1/4)⁻²', answer: '16', type: 'fraction-negative' },
+                    { question: 'Hitunglah: 7⁻¹', answer: '1/7', type: 'negative-power' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'negatif');
+                container.appendChild(div);
+            });
+        }
+
+        function generateSifatKaliProblems() {
+            const container = document.getElementById('sifat-kali-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Sederhanakan: 2³ × 2⁴', answer: '2⁷', type: 'same-base' },
+                    { question: 'Sederhanakan: 3² × 4²', answer: '12²', type: 'same-power' },
+                    { question: 'Hitunglah: a⁵ × a³ (dalam bentuk pangkat)', answer: 'a⁸', type: 'variable' },
+                    { question: 'Sederhanakan: 5¹ × 5⁶', answer: '5⁷', type: 'same-base' },
+                    { question: 'Sederhanakan: 2³ × 3³', answer: '6³', type: 'same-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: 4² × 4³', answer: '4⁵', type: 'same-base' },
+                    { question: 'Sederhanakan: 5² × 2²', answer: '10²', type: 'same-power' },
+                    { question: 'Hitunglah: x⁴ × x² (dalam bentuk pangkat)', answer: 'x⁶', type: 'variable' },
+                    { question: 'Sederhanakan: 3⁵ × 3²', answer: '3⁷', type: 'same-base' },
+                    { question: 'Sederhanakan: 6² × 2²', answer: '12²', type: 'same-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: 7³ × 7¹', answer: '7⁴', type: 'same-base' },
+                    { question: 'Sederhanakan: 4³ × 2³', answer: '8³', type: 'same-power' },
+                    { question: 'Hitunglah: m² × m⁵ (dalam bentuk pangkat)', answer: 'm⁷', type: 'variable' },
+                    { question: 'Sederhanakan: 2⁶ × 2¹', answer: '2⁷', type: 'same-base' },
+                    { question: 'Sederhanakan: 3⁴ × 2⁴', answer: '6⁴', type: 'same-power' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'sifat-kali');
+                container.appendChild(div);
+            });
+        }
+
+        function generateSifatBagiProblems() {
+            const container = document.getElementById('sifat-bagi-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Sederhanakan: 5⁶ ÷ 5²', answer: '5⁴', type: 'same-base' },
+                    { question: 'Sederhanakan: 8³ ÷ 2³', answer: '4³', type: 'same-power' },
+                    { question: 'Hitunglah: x⁷ ÷ x³ (dalam bentuk pangkat)', answer: 'x⁴', type: 'variable' },
+                    { question: 'Sederhanakan: 3⁵ ÷ 3⁷', answer: '3⁻²', type: 'negative-result' },
+                    { question: 'Sederhanakan: 12⁴ ÷ 3⁴', answer: '4⁴', type: 'same-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: 7⁸ ÷ 7³', answer: '7⁵', type: 'same-base' },
+                    { question: 'Sederhanakan: 10⁵ ÷ 2⁵', answer: '5⁵', type: 'same-power' },
+                    { question: 'Hitunglah: a⁹ ÷ a⁴ (dalam bentuk pangkat)', answer: 'a⁵', type: 'variable' },
+                    { question: 'Sederhanakan: 2³ ÷ 2⁶', answer: '2⁻³', type: 'negative-result' },
+                    { question: 'Sederhanakan: 18² ÷ 6²', answer: '3²', type: 'same-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: 4⁷ ÷ 4²', answer: '4⁵', type: 'same-base' },
+                    { question: 'Sederhanakan: 15³ ÷ 3³', answer: '5³', type: 'same-power' },
+                    { question: 'Hitunglah: y⁶ ÷ y² (dalam bentuk pangkat)', answer: 'y⁴', type: 'variable' },
+                    { question: 'Sederhanakan: 6² ÷ 6⁵', answer: '6⁻³', type: 'negative-result' },
+                    { question: 'Sederhanakan: 20⁴ ÷ 4⁴', answer: '5⁴', type: 'same-power' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'sifat-bagi');
+                container.appendChild(div);
+            });
+        }
+
+        function generatePangkatPangkatProblems() {
+            const container = document.getElementById('pangkat-pangkat-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Sederhanakan: (2³)⁴', answer: '2¹²', type: 'power-of-power' },
+                    { question: 'Sederhanakan: (3 × 4)²', answer: '3² × 4²', type: 'power-of-product' },
+                    { question: 'Sederhanakan: (5/2)³', answer: '5³/2³', type: 'power-of-quotient' },
+                    { question: 'Sederhanakan: (a²)⁵', answer: 'a¹⁰', type: 'variable-power' },
+                    { question: 'Sederhanakan: (x³)²', answer: 'x⁶', type: 'variable-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: (4²)³', answer: '4⁶', type: 'power-of-power' },
+                    { question: 'Sederhanakan: (2 × 5)³', answer: '2³ × 5³', type: 'power-of-product' },
+                    { question: 'Sederhanakan: (7/3)²', answer: '7²/3²', type: 'power-of-quotient' },
+                    { question: 'Sederhanakan: (b³)⁴', answer: 'b¹²', type: 'variable-power' },
+                    { question: 'Sederhanakan: (y²)³', answer: 'y⁶', type: 'variable-power' }
+                ],
+                [
+                    { question: 'Sederhanakan: (3⁴)²', answer: '3⁸', type: 'power-of-power' },
+                    { question: 'Sederhanakan: (6 × 2)²', answer: '6² × 2²', type: 'power-of-product' },
+                    { question: 'Sederhanakan: (4/5)³', answer: '4³/5³', type: 'power-of-quotient' },
+                    { question: 'Sederhanakan: (c⁴)³', answer: 'c¹²', type: 'variable-power' },
+                    { question: 'Sederhanakan: (z⁵)²', answer: 'z¹⁰', type: 'variable-power' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'pangkat-pangkat');
+                container.appendChild(div);
+            });
+        }
+
+        function generateSifatKhususProblems() {
+            const container = document.getElementById('sifat-khusus-problems');
+            container.innerHTML = '';
+            
+            const problemSets = [
+                [
+                    { question: 'Berapa nilai dari 7⁰?', answer: '1', type: 'zero-power' },
+                    { question: 'Berapa nilai dari 15¹?', answer: '15', type: 'one-power' },
+                    { question: 'Hitunglah: 8^(1/3)', answer: '2', type: 'fractional' },
+                    { question: 'Hitunglah: (-3)⁴', answer: '81', type: 'negative-even' },
+                    { question: 'Hitunglah: (-2)⁵', answer: '-32', type: 'negative-odd' }
+                ],
+                [
+                    { question: 'Berapa nilai dari 100⁰?', answer: '1', type: 'zero-power' },
+                    { question: 'Berapa nilai dari 25¹?', answer: '25', type: 'one-power' },
+                    { question: 'Hitunglah: 27^(1/3)', answer: '3', type: 'fractional' },
+                    { question: 'Hitunglah: (-4)²', answer: '16', type: 'negative-even' },
+                    { question: 'Hitunglah: (-1)⁷', answer: '-1', type: 'negative-odd' }
+                ],
+                [
+                    { question: 'Berapa nilai dari 50⁰?', answer: '1', type: 'zero-power' },
+                    { question: 'Berapa nilai dari 99¹?', answer: '99', type: 'one-power' },
+                    { question: 'Hitunglah: 16^(1/4)', answer: '2', type: 'fractional' },
+                    { question: 'Hitunglah: (-5)²', answer: '25', type: 'negative-even' },
+                    { question: 'Hitunglah: (-3)³', answer: '-27', type: 'negative-odd' }
+                ]
+            ];
+            
+            const randomSet = problemSets[Math.floor(Math.random() * problemSets.length)];
+            randomSet.forEach((prob, index) => {
+                const div = createProblemElement(prob, index + 1, 'sifat-khusus');
+                container.appendChild(div);
+            });
+        }
+
+        function createProblemElement(problem, number, category) {
+            const div = document.createElement('div');
+            div.className = 'bg-white p-4 rounded-lg border border-gray-200 shadow-sm';
+            
+            const inputId = `${category}-answer-${number}`;
+            
+            div.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <h4 class="font-bold text-gray-800">Soal ${number}</h4>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${problem.type}</span>
+                </div>
+                <div class="math-display text-lg mb-3">${problem.question}</div>
+                <div class="space-y-3">
+                    <input type="text" 
+                           placeholder="Ketik jawaban di sini..." 
+                           class="w-full p-3 border-2 border-gray-300 rounded-lg math-input focus:border-blue-500 transition-colors" 
+                           id="${inputId}"
+                           oninput="formatMathInput(this)"
+                           onkeyup="formatMathInput(this)">
+                    
+                    <!-- Virtual Keyboard for this problem -->
+                    <div class="bg-gray-50 p-3 rounded-lg border">
+                        <div class="text-xs text-gray-600 mb-2 font-semibold">⌨️ Keyboard Virtual:</div>
+                        
+                        <!-- Numbers -->
+                        <div class="grid grid-cols-5 gap-1 mb-2">
+                            <button onclick="insertToInput('${inputId}', '1')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">1</button>
+                            <button onclick="insertToInput('${inputId}', '2')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">2</button>
+                            <button onclick="insertToInput('${inputId}', '3')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">3</button>
+                            <button onclick="insertToInput('${inputId}', '4')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">4</button>
+                            <button onclick="insertToInput('${inputId}', '5')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">5</button>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1 mb-2">
+                            <button onclick="insertToInput('${inputId}', '6')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">6</button>
+                            <button onclick="insertToInput('${inputId}', '7')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">7</button>
+                            <button onclick="insertToInput('${inputId}', '8')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">8</button>
+                            <button onclick="insertToInput('${inputId}', '9')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">9</button>
+                            <button onclick="insertToInput('${inputId}', '0')" class="keyboard-btn bg-blue-100 hover:bg-blue-200 p-2 rounded text-sm font-bold">0</button>
+                        </div>
+
+                        <!-- Operations -->
+                        <div class="grid grid-cols-4 gap-1 mb-2">
+                            <button onclick="insertToInput('${inputId}', '+')" class="keyboard-btn bg-green-100 hover:bg-green-200 p-2 rounded text-sm font-bold">+</button>
+                            <button onclick="insertToInput('${inputId}', '-')" class="keyboard-btn bg-green-100 hover:bg-green-200 p-2 rounded text-sm font-bold">−</button>
+                            <button onclick="insertToInput('${inputId}', '×')" class="keyboard-btn bg-green-100 hover:bg-green-200 p-2 rounded text-sm font-bold">×</button>
+                            <button onclick="insertToInput('${inputId}', '÷')" class="keyboard-btn bg-green-100 hover:bg-green-200 p-2 rounded text-sm font-bold">÷</button>
+                        </div>
+
+                        <!-- Special Math Symbols -->
+                        <div class="grid grid-cols-4 gap-1 mb-2">
+                            <button onclick="insertToInput('${inputId}', '^')" class="keyboard-btn bg-purple-100 hover:bg-purple-200 p-2 rounded text-xs font-bold">x<sup>n</sup></button>
+                            <button onclick="insertToInput('${inputId}', '/')" class="keyboard-btn bg-purple-100 hover:bg-purple-200 p-2 rounded text-xs font-bold">a/b</button>
+                            <button onclick="insertToInput('${inputId}', '=')" class="keyboard-btn bg-purple-100 hover:bg-purple-200 p-2 rounded text-sm font-bold">=</button>
+                            <button onclick="insertToInput('${inputId}', '.')" class="keyboard-btn bg-purple-100 hover:bg-purple-200 p-2 rounded text-sm font-bold">.</button>
+                        </div>
+
+                        <!-- Variables and Brackets -->
+                        <div class="grid grid-cols-6 gap-1 mb-2">
+                            <button onclick="insertToInput('${inputId}', 'a')" class="keyboard-btn bg-yellow-100 hover:bg-yellow-200 p-2 rounded text-sm font-bold italic">a</button>
+                            <button onclick="insertToInput('${inputId}', 'b')" class="keyboard-btn bg-yellow-100 hover:bg-yellow-200 p-2 rounded text-sm font-bold italic">b</button>
+                            <button onclick="insertToInput('${inputId}', 'x')" class="keyboard-btn bg-yellow-100 hover:bg-yellow-200 p-2 rounded text-sm font-bold italic">x</button>
+                            <button onclick="insertToInput('${inputId}', 'n')" class="keyboard-btn bg-yellow-100 hover:bg-yellow-200 p-2 rounded text-sm font-bold italic">n</button>
+                            <button onclick="insertToInput('${inputId}', '(')" class="keyboard-btn bg-gray-100 hover:bg-gray-200 p-2 rounded text-sm font-bold">(</button>
+                            <button onclick="insertToInput('${inputId}', ')')" class="keyboard-btn bg-gray-100 hover:bg-gray-200 p-2 rounded text-sm font-bold">)</button>
+                        </div>
+
+                        <!-- Control Buttons -->
+                        <div class="grid grid-cols-3 gap-1 mb-2">
+                            <button onclick="clearInput('${inputId}')" class="keyboard-btn bg-red-100 hover:bg-red-200 p-2 rounded text-xs font-bold">Clear</button>
+                            <button onclick="backspaceInput('${inputId}')" class="keyboard-btn bg-orange-100 hover:bg-orange-200 p-2 rounded text-sm font-bold">⌫</button>
+                            <button onclick="insertToInput('${inputId}', ' ')" class="keyboard-btn bg-teal-100 hover:bg-teal-200 p-2 rounded text-xs font-bold">Space</button>
+                        </div>
+
+                        <!-- Quick Templates -->
+                        <div class="border-t pt-2">
+                            <div class="text-xs text-gray-600 mb-1 font-semibold">🚀 Template Cepat:</div>
+                            <div class="grid grid-cols-3 gap-1 mb-2">
+                                <button onclick="setInputValue('${inputId}', '2^3')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">2³</button>
+                                <button onclick="setInputValue('${inputId}', '5^-2')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">5⁻²</button>
+                                <button onclick="setInputValue('${inputId}', '1/8')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">1/8</button>
+                                <button onclick="setInputValue('${inputId}', 'a^m')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">aᵐ</button>
+                                <button onclick="setInputValue('${inputId}', '2^(3+4)')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">2³⁺⁴</button>
+                                <button onclick="setInputValue('${inputId}', 'x^n')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">xⁿ</button>
+                            </div>
+                            <div class="text-xs text-gray-600 mb-1 font-semibold">📐 Template Pecahan:</div>
+                            <div class="grid grid-cols-4 gap-1">
+                                <button onclick="setInputValue('${inputId}', '1/2^3')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">1/2³</button>
+                                <button onclick="setInputValue('${inputId}', '2^3/4^2')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">2³/4²</button>
+                                <button onclick="setInputValue('${inputId}', 'a^n/b^m')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">aⁿ/bᵐ</button>
+                                <button onclick="setInputValue('${inputId}', '1/x^2')" class="bg-white hover:bg-gray-100 p-1 rounded border text-xs">1/x²</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="checkAnswer('${inputId}', '${problem.answer}')" 
+                                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex-1">
+                            ✓ Periksa Jawaban
+                        </button>
+                        <button onclick="showHint('${inputId}', '${problem.answer}')" 
+                                class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition">
+                            💡 Petunjuk
+                        </button>
+                    </div>
+                </div>
+                <div id="result-${inputId}" class="mt-2 text-sm"></div>
+            `;
+            
+            return div;
+        }
+
+        function checkAnswer(inputId, correctAnswer) {
+            const userAnswer = document.getElementById(inputId).value.trim();
+            const resultDiv = document.getElementById(`result-${inputId}`);
+            const inputElement = document.getElementById(inputId);
+            
+            // Reset previous styling
+            inputElement.classList.remove('bg-green-50', 'border-green-500', 'bg-red-50', 'border-red-500');
+            
+            // Convert user answer back to standard format for comparison
+            const normalizedUserAnswer = normalizeAnswer(userAnswer);
+            const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+            
+            // Multiple correct answer formats
+            const correctFormats = [correctAnswer, normalizedCorrectAnswer];
+            
+            // Handle fractions
+            if (correctAnswer.includes('/')) {
+                const parts = correctAnswer.split('/');
+                correctFormats.push(`${parts[0]}/${parts[1]}`);
+                
+                // Add various fraction formats
+                correctFormats.push(`${parts[0]} / ${parts[1]}`);
+                correctFormats.push(`${parts[0]}÷${parts[1]}`);
+                
+                // Calculate decimal equivalent
+                const decimal = (parseFloat(parts[0]) / parseFloat(parts[1])).toString();
+                correctFormats.push(decimal);
+                if (decimal.includes('.')) {
+                    correctFormats.push(parseFloat(decimal).toFixed(3));
+                    correctFormats.push(parseFloat(decimal).toFixed(2));
+                    correctFormats.push(parseFloat(decimal).toFixed(1));
+                }
+                
+                // Check if user answer is equivalent fraction
+                const userFractionValue = evaluateFraction(normalizedUserAnswer);
+                const correctFractionValue = evaluateFraction(correctAnswer);
+                if (userFractionValue !== null && correctFractionValue !== null) {
+                    if (Math.abs(userFractionValue - correctFractionValue) < 0.0001) {
+                        correctFormats.push(normalizedUserAnswer);
+                    }
+                }
+            }
+            
+            // Handle powers with ^ notation
+            if (correctAnswer.includes('^')) {
+                correctFormats.push(correctAnswer.replace(/\^/g, ''));
+            }
+            
+            // Handle negative powers
+            if (correctAnswer.includes('-')) {
+                correctFormats.push(correctAnswer.replace(/-/g, '−'));
+            }
+            
+            // Handle multiplication symbols
+            correctFormats.push(correctAnswer.replace(/×/g, '*'));
+            correctFormats.push(correctAnswer.replace(/×/g, 'x'));
+            
+            // Add formatted versions
+            correctFormats.push(userAnswer); // Accept the formatted version as-is
+            
+            const isCorrect = correctFormats.some(format => {
+                const cleanUser = normalizedUserAnswer.toLowerCase().replace(/\s/g, '');
+                const cleanFormat = normalizeAnswer(format).toLowerCase().replace(/\s/g, '');
+                return cleanUser === cleanFormat || userAnswer === format;
+            });
+            
+            if (isCorrect) {
+                resultDiv.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 p-3 rounded-lg">
+                        <span class="text-green-700 font-bold">✅ Benar! Jawaban Anda tepat.</span>
+                        <div class="text-xs text-green-600 mt-1">Jawaban: ${userAnswer}</div>
+                    </div>
+                `;
+                inputElement.classList.add('bg-green-50', 'border-green-500');
+                
+                // Add celebration animation
+                inputElement.style.animation = 'pulse 0.5s ease-in-out';
+                setTimeout(() => {
+                    inputElement.style.animation = '';
+                }, 500);
+                
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 p-3 rounded-lg">
+                        <span class="text-red-700 font-bold">❌ Belum tepat.</span>
+                        <div class="text-xs text-red-600 mt-1">Jawaban yang benar: <code class="bg-gray-100 px-2 py-1 rounded font-mono">${correctAnswer}</code></div>
+                        <div class="text-xs text-red-600 mt-1">Jawaban Anda: <code class="bg-gray-100 px-2 py-1 rounded font-mono">${userAnswer}</code></div>
+                    </div>
+                `;
+                inputElement.classList.add('bg-red-50', 'border-red-500');
+            }
+        }
+
+        function normalizeAnswer(answer) {
+            // Convert superscript and subscript back to normal notation for comparison
+            let normalized = answer;
+            
+            // Convert superscripts back to ^ notation
+            const superscriptMap = {
+                '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4',
+                '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9',
+                '⁺': '+', '⁻': '-', '⁼': '=', '⁽': '(', '⁾': ')',
+                'ᵃ': 'a', 'ᵇ': 'b', 'ᶜ': 'c', 'ᵈ': 'd', 'ᵉ': 'e',
+                'ᶠ': 'f', 'ᵍ': 'g', 'ʰ': 'h', 'ⁱ': 'i', 'ʲ': 'j',
+                'ᵏ': 'k', 'ˡ': 'l', 'ᵐ': 'm', 'ⁿ': 'n', 'ᵒ': 'o',
+                'ᵖ': 'p', 'ᵠ': 'q', 'ʳ': 'r', 'ˢ': 's', 'ᵗ': 't',
+                'ᵘ': 'u', 'ᵛ': 'v', 'ʷ': 'w', 'ˣ': 'x', 'ʸ': 'y', 'ᶻ': 'z'
+            };
+            
+            // Convert subscripts back to _ notation
+            const subscriptMap = {
+                '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4',
+                '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9',
+                '₊': '+', '₋': '-', '₌': '=', '₍': '(', '₎': ')',
+                'ₐ': 'a', 'ₑ': 'e', 'ₕ': 'h', 'ᵢ': 'i', 'ⱼ': 'j',
+                'ₖ': 'k', 'ₗ': 'l', 'ₘ': 'm', 'ₙ': 'n', 'ₒ': 'o',
+                'ₚ': 'p', 'ᵣ': 'r', 'ₛ': 's', 'ₜ': 't', 'ᵤ': 'u',
+                'ᵥ': 'v', 'ₓ': 'x'
+            };
+            
+            // Replace superscripts with ^ notation
+            let hasSuperscript = false;
+            let superscriptContent = '';
+            let result = '';
+            
+            for (let i = 0; i < normalized.length; i++) {
+                const char = normalized[i];
+                if (superscriptMap[char]) {
+                    if (!hasSuperscript) {
+                        result += '^';
+                        hasSuperscript = true;
+                    }
+                    superscriptContent += superscriptMap[char];
+                } else {
+                    if (hasSuperscript) {
+                        result += superscriptContent;
+                        hasSuperscript = false;
+                        superscriptContent = '';
+                    }
+                    result += char;
+                }
+            }
+            
+            if (hasSuperscript) {
+                result += superscriptContent;
+            }
+            
+            return result;
+        }
+        
+        function evaluateFraction(fraction) {
+            // Helper function to evaluate simple fractions for comparison
+            if (fraction.includes('/')) {
+                const parts = fraction.split('/');
+                if (parts.length === 2) {
+                    const num = parseFloat(parts[0]);
+                    const den = parseFloat(parts[1]);
+                    if (!isNaN(num) && !isNaN(den) && den !== 0) {
+                        return num / den;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function showHint(inputId, correctAnswer) {
+            const resultDiv = document.getElementById(`result-${inputId}`);
+            let hint = '';
+            
+            if (correctAnswer.includes('/')) {
+                hint = '💡 Ingat: bilangan berpangkat negatif = 1 dibagi bilangan berpangkat positif';
+            } else if (correctAnswer.includes('^') || correctAnswer.includes('⁰')) {
+                hint = '💡 Gunakan sifat bilangan berpangkat untuk menyederhanakan';
+            } else if (!isNaN(correctAnswer)) {
+                hint = '💡 Hitung dengan mengalikan bilangan pokok sebanyak pangkatnya';
+            } else {
+                hint = '💡 Perhatikan sifat-sifat bilangan berpangkat yang sudah dipelajari';
+            }
+            
+            resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg"><span class="text-yellow-700">${hint}</span></div>`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start with the first tab (definisi)
+            showTab('definisi');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a63f72773adb42',t:'MTc1NDM5NjQxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
